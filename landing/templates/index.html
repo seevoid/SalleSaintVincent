@@ -1,0 +1,401 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Salle Chez Dudu</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/grayscale.css' %}" rel="stylesheet">
+  <link href="{% static 'css/palette.css' %}" rel="stylesheet">
+  <link href="{% static 'css/gallery.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/quotes_carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jsCalendar.css' %}">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Chez DUDU</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#photos">Photos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">A propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#resa">Réservation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#signup">Livre d'or</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">Chez Dudu</h1>
+        <h2 class="text-white mx-auto mt-2 mb-5">Salle des fêtes et de reception à Saint-Vincent Sterlanges.</h2>
+        <a href="#resa" class="btn btn-primary js-scroll-trigger">Réserver maintenant !</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="photos" class="about-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="mb-4" style="color: #2B2E2B;">Tout types d'évènements</h2>
+          <p style="color: #2B2E2B;">La salle est disponible à la réservation pour accueillir vos convives. Qu'il s'agisse d'un mariage, un anniversaire ou encore un meeting professionnel, la salle est adaptée à vos besoins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects-section">
+    <div class="container-fluid">
+      <div class="gallery">
+        <figure>
+          <img src="{% static 'img/salle1.jpg' %}" alt="" />
+          <figcaption>Buffet mural</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle2.jpg' %}" alt="" />
+          <figcaption>Toilettes</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle3.jpg' %}" alt="" />
+          <figcaption>
+            Grande tablée
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle4.jpg' %}" alt="" />
+          <figcaption>Fenêtres avec rideaux</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle5.jpg' %}" alt="" />
+          <figcaption>Bar</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle1.jpg' %}" alt="" />
+          <figcaption>Buffet mural</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle2.jpg' %}" alt="" />
+          <figcaption>Toilettes</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle3.jpg' %}" alt="" />
+          <figcaption>Grande tablée</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle4.jpg' %}" alt="" />
+          <figcaption>
+            Fenêtres avec rideaux
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'img/salle5.jpg' %}" alt="" />
+          <figcaption>Bar</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container-fluid" style="width: 100%; padding-top: 2%;">
+        <h3 class="primary-text-color" style="text-align: center;">Ils ont adoré ! <i class="far fa-smile-beam"></i></h3>
+        <div id="carouselContent" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active text-center p-4">
+                    <img class="carousel-img-box" src="{% static 'img/dp_1.jpg' %}">
+                     <p class="primary-text-color"><i class="fas fa-quote-left"></i> On a pu organiser une sacré soirée dans cette majestueuse salle des fêtes ! Merci à tous ceux qui ont rendu ça possible et surtout merci DUDU ! <i class="fas fa-heart" style="color: red;"></i> <i class="fas fa-quote-right"></i></p>
+                     <p class="secondary-text-color"><font style="font-size:14px; text-transform: uppercase; font-weight: bold; font-style:italic">Robots Musiciens</font></p>
+                </div>
+                <div class="carousel-item text-center p-4">
+                     <img class="carousel-img-box" src="{% static 'img/dp_2.png' %}">
+                     <p class="primary-text-color"><i class="fas fa-quote-left"></i> Cette salle a été parfaite pour organiser la réception de nos rêves. La sonorisation est au top et on a pu envoyer un concert dont tout le monde se souviendra ! <i class="fas fa-quote-right"></i></p>
+                     <p class="secondary-text-color"><font style="font-size:14px; text-transform: uppercase; font-weight: bold; font-style:italic">Robots Musiciens</font></p>
+                </div>
+                <div class="carousel-item text-center p-4">
+                     <img class="carousel-img-box" src="{% static 'img/dp_3.png' %}">
+                     <p class="primary-text-color"><i class="fas fa-quote-left"></i> Cette salle a été parfaite pour organiser la réception de nos rêves. La sonorisation est au top et on a pu envoyer un concert dont tout le monde se souviendra ! <i class="fas fa-quote-right"></i></p>
+                     <p class="secondary-text-color"><font style="font-size:14px; text-transform: uppercase; font-weight: bold; font-style:italic">Robots Musiciens</font></p>
+                </div>
+            </div>
+            <a class="carousel-control-prev" style="width: 5%;" href="#carouselContent" role="button" data-slide="prev">
+                <i class="fas fa-chevron-left fa-2x accent-color"></i>
+            </a>
+            <a class="carousel-control-next" style="width: 5%;" href="#carouselContent" role="button" data-slide="next">
+                <i class="fas fa-chevron-right fa-2x accent-color"></i>
+            </a>
+        </div>
+    </div>
+  </section>
+
+  <section class="projects-section" id="about">
+    <div class="container">
+      <!-- Project One Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="{% static 'img/party.jpg' %}" alt="">
+        </div>
+        <div class="col-lg-6">
+          <div class="light-primary-color text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="accent-color">Salle des fêtes</h4>
+                <p class="mb-0 primary-text-color">Venez célébrer des mariages ou anniversaire. blablabla blablabla blablabla blablabla blablabla blablabla blablabla </p>
+              </br>
+                <p class="mb-0 primary-text-color">blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablab</p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="{% static 'img/meeting.jpg' %}" alt="">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="light-primary-color text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="accent-color">Meetings professionnels</h4>
+                <p class="mb-0 primary-text-color">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
+              </br>
+                <p class="mb-0 primary-text-color">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="resa" style="padding: 2em 0 2em 0;">
+    <h2 class="text-black mb-5" style="text-align: center;"><i class="far fa-calendar-alt" style="margin-right: 1%;"></i>Réservation</h2>
+
+    <h5 class="text-black mb-5" style="text-align: center;">Les dates marquées en rouges ci-dessous sont déjà réservées</h5>
+
+    <div class="container">
+      <div class="row" >
+        <div id="my-calendar" style="margin: 0 auto;">
+        </div>
+        
+
+      </div>
+    </div>
+
+
+    </section>
+
+  <section id="contact" style="padding-top: 10%;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+          <i class="far fa-paper-plane fa-2x mb-2" style="color: #2B2E2B;"></i>
+          <h2 class="mb-5" style="font-size: 250%; color: #2B2E2B;">Pour toutes demandes d'informations, contactez nous !</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signup" class="signup-section">
+    <div class="container" style="padding-top: 4%; padding-bottom: 6%;">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+          
+
+          <form>
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" name="email" placeholder="Votre E-Mail">
+            <input style="margin-top: 3%;" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name" name="name" placeholder="Votre nom">
+            <textarea style="margin-top: 3%;" name="message" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="10" placeholder="Message" required id="id_message"></textarea>
+            <button style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Envoyer</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" style="background-color: #2B2E2B;">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-map-marked-alt accent-color mb-2"></i>
+              <h4 class="text-uppercase m-0 primary-text-color">Addresse</h4>
+              <hr class="my-4">
+              <div class="small primary-text-color">Saint-Vincent Sterlanges</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope accent-color mb-2"></i>
+              <h4 class="text-uppercase m-0 primary-text-color">Email</h4>
+              <hr class="my-4">
+              <div class="small primary-text-color">
+                <a href="mailto:sallesaintvincent@gmail.com">sallesaintvincent@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-mobile-alt accent-color mb-2"></i>
+              <h4 class="text-uppercase m-0 primary-text-color">Téléphone</h4>
+              <hr class="my-4 accent-color accent-color-background">
+              <div class="small primary-text-color">06.81.72.37.31</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="small text-center text-white-50">
+    <div class="container">
+      <p>Copyright &copy; SalleChezDudu.com</p>
+      <p style="margin-top: -1.5%;">Made with <i class="fas fa-heart" style="color: red;"></i> by <a href="https://martinbaty.com" target="_blank">Martin Baty</a> </p>
+    </div>
+  </footer>
+
+
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;">
+    <symbol id="close" viewBox="0 0 18 18">
+      <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M9,0.493C4.302,0.493,0.493,4.302,0.493,9S4.302,17.507,9,17.507
+        S17.507,13.698,17.507,9S13.698,0.493,9,0.493z M12.491,11.491c0.292,0.296,0.292,0.773,0,1.068c-0.293,0.295-0.767,0.295-1.059,0
+        l-2.435-2.457L6.564,12.56c-0.292,0.295-0.766,0.295-1.058,0c-0.292-0.295-0.292-0.772,0-1.068L7.94,9.035L5.435,6.507
+        c-0.292-0.295-0.292-0.773,0-1.068c0.293-0.295,0.766-0.295,1.059,0l2.504,2.528l2.505-2.528c0.292-0.295,0.767-0.295,1.059,0
+        s0.292,0.773,0,1.068l-2.505,2.528L12.491,11.491z"/>
+    </symbol>
+  </svg>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'js/grayscale.min.js' %}"></script>
+  <script src="{% static 'js/jsCalendar.js' %}"></script>
+
+
+  <script>
+    popup = {
+    init: function(){
+      $('figure').click(function(){
+        popup.open($(this));
+      });
+      
+      $(document).on('click', '.popup img', function(){
+        return false;
+      }).on('click', '.popup', function(){
+        popup.close();
+      })
+    },
+    open: function($figure) {
+      $('.gallery').addClass('pop');
+      $popup = $('<div class="popup" />').appendTo($('body'));
+      $fig = $figure.clone().appendTo($('.popup'));
+      $bg = $('<div class="bg" />').appendTo($('.popup'));
+      $close = $('<div class="close"><svg><use xlink:href="#close"></use></svg></div>').appendTo($fig);
+      $shadow = $('<div class="shadow" />').appendTo($fig);
+      src = $('img', $fig).attr('src');
+      $shadow.css({backgroundImage: 'url(' + src + ')'});
+      $bg.css({backgroundImage: 'url(' + src + ')'});
+      setTimeout(function(){
+        $('.popup').addClass('pop');
+      }, 10);
+    },
+    close: function(){
+      $('.gallery, .popup').removeClass('pop');
+      setTimeout(function(){
+        $('.popup').remove()
+      }, 100);
+    }
+  }
+
+  popup.init()
+
+  </script>
+
+  <!-- Create the calendar -->
+  <script type="text/javascript">
+      // Get the element
+      var element = document.getElementById("my-calendar");
+      // Create the calendar
+      var myCalendar = jsCalendar.new(element);
+      // Get the buttons
+  </script>
+
+  <script type="text/javascript">
+    {% for date in events_dates %}
+        myCalendar.select("{{ date }}")
+    {% endfor %}
+
+    $(document).ready(function() {
+      //Set the carousel options
+      $('#quote-carousel').carousel({
+        pause: true,
+        interval: 4000,
+      });
+    });
+  </script>
+
+</body>
+
+</html>
