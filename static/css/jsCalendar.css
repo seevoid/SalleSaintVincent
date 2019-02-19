@@ -124,6 +124,13 @@
 			line-height: 32px;
 			width: 70px;
 		}
+		.jsCalendar tbody td.jsCalendar-selected-green {
+			background-color: green;
+			/*border: 2px solid #E6E6E6;*/
+			height: 32px;
+			line-height: 32px;
+			width: 70px;
+		}
 		.jsCalendar tbody td.jsCalendar-current {
 			background-color: #52C9FF;
 			border-radius: 18px;
@@ -200,7 +207,7 @@
 			border-radius: 0;
 		}
 		.jsCalendar.material-theme thead {
-			background-color: #52C9FF;
+			background-color: #962D25;
 			color: #FFFFFF;
 			margin: 0;
 			padding: 4px 4px 0 4px;

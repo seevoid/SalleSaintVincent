@@ -1,36 +1,21 @@
-import datetime
-
 from django import forms
-from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
-import datetime
 
-now = datetime.datetime.now()
+PRESTA_CHOICES= [
+    ('fete', 'Fete'),
+    ('pro', 'Pro'),
+    ]
 
-class BookForm(forms.Form):
-    date_entrée = forms.DateField(
-        required=True,
-        widget=DatePicker(
-            attrs={
-               'append': 'fa fa-calendar',
-               'input_toggle': True,
-               'icon_toggle': True,
-            },
-            options={
-                'minDate': (datetime.date.today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'),
-            },
-        ),
-    )
+class resaForm(forms.Form):
+    name_resa = forms.CharField(required=True)
+    email_resa = forms.EmailField(required=True)
+    phone_number_resa = forms.CharField(required=True) 
+    message_resa = forms.CharField(required=True) 
+    optradio = forms.CharField(required=False)
+    dates_resa = forms.CharField(required=False)
 
-    date_sortie = forms.DateField(
-        required=True,
-        widget=DatePicker(
-            attrs={
-               'append': 'fa fa-calendar',
-               'input_toggle': True,
-               'icon_toggle': True,
-            },
-            options={
-                'minDate': (datetime.date.today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'),
-            },
-        ),
-    )
+class contactForm(forms.Form):
+    name_contact = forms.CharField(required=True)
+    email_contact = forms.EmailField(required=True)
+    phone_number_contact = forms.CharField(required=False) 
+    message_contact = forms.CharField(required=True) 
+

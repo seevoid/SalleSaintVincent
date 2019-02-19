@@ -12,11 +12,16 @@
 
   <title>Salle Chez Dudu</title>
 
+  <script src="https://unpkg.com/scrollreveal"></script>
+
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 
 
   <!-- Custom styles for this template -->
@@ -53,7 +58,7 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Livre d'or</a>
+            <a class="nav-link js-scroll-trigger" href="{% url 'goldenbook' %}">Livre d'or</a>
           </li>
         </ul>
       </div>
@@ -64,8 +69,8 @@
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Chez Dudu</h1>
-        <h2 class="text-white mx-auto mt-2 mb-5">Salle des fêtes et de reception à Saint-Vincent Sterlanges.</h2>
+        <h1 class="mx-auto my-0 text-uppercase" id="title_big">Chez Dudu</h1>
+        <h2 class="text-white mx-auto mt-2 mb-5" id="text-typed"></h2>
         <a href="#resa" class="btn btn-primary js-scroll-trigger">Réserver maintenant !</a>
       </div>
     </div>
@@ -88,47 +93,47 @@
     <div class="container-fluid">
       <div class="gallery">
         <figure>
-          <img src="{% static 'img/salle1.jpg' %}" alt="" />
+          <img id="image_1" src="{% static 'img/salle1.jpg' %}" alt="" />
           <figcaption>Buffet mural</figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle2.jpg' %}" alt="" />
+          <img id="image_2" src="{% static 'img/salle2.jpg' %}" alt="" />
           <figcaption>Toilettes</figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle3.jpg' %}" alt="" />
+          <img id="image_3" src="{% static 'img/salle3.jpg' %}" alt="" />
           <figcaption>
             Grande tablée
           </figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle4.jpg' %}" alt="" />
+          <img id="image_4" src="{% static 'img/salle4.jpg' %}" alt="" />
           <figcaption>Fenêtres avec rideaux</figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle5.jpg' %}" alt="" />
+          <img id="image_5" src="{% static 'img/salle5.jpg' %}" alt="" />
           <figcaption>Bar</figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle1.jpg' %}" alt="" />
+          <img id="image_10" src="{% static 'img/salle1.jpg' %}" alt="" />
           <figcaption>Buffet mural</figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle2.jpg' %}" alt="" />
+          <img id="image_9" src="{% static 'img/salle2.jpg' %}" alt="" />
           <figcaption>Toilettes</figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle3.jpg' %}" alt="" />
+          <img id="image_8" src="{% static 'img/salle3.jpg' %}" alt="" />
           <figcaption>Grande tablée</figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle4.jpg' %}" alt="" />
+          <img id="image_7" src="{% static 'img/salle4.jpg' %}" alt="" />
           <figcaption>
             Fenêtres avec rideaux
           </figcaption>
         </figure>
         <figure>
-          <img src="{% static 'img/salle5.jpg' %}" alt="" />
+          <img id="image_6" src="{% static 'img/salle5.jpg' %}" alt="" />
           <figcaption>Bar</figcaption>
         </figure>
       </div>
@@ -177,10 +182,10 @@
           <div class="light-primary-color text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="accent-color">Salle des fêtes</h4>
-                <p class="mb-0 primary-text-color">Venez célébrer des mariages ou anniversaire. blablabla blablabla blablabla blablabla blablabla blablabla blablabla </p>
+                <h4 class="accent-color" id="title1">Salle des fêtes</h4>
+                <p class="mb-0 primary-text-color" id="text-about1">Venez célébrer des mariages ou anniversaire. blablabla blablabla blablabla blablabla blablabla blablabla blablabla </p>
               </br>
-                <p class="mb-0 primary-text-color">blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablab</p>
+                <p class="mb-0 primary-text-color" id="text-about1-2">blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablab</p>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
             </div>
@@ -197,10 +202,10 @@
           <div class="light-primary-color text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-right">
-                <h4 class="accent-color">Meetings professionnels</h4>
-                <p class="mb-0 primary-text-color">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
+                <h4 class="accent-color" id="title2">Meetings professionnels</h4>
+                <p class="mb-0 primary-text-color" id="text-about2">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
               </br>
-                <p class="mb-0 primary-text-color">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
+                <p class="mb-0 primary-text-color" id="text-about2-2">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
                 <hr class="d-none d-lg-block mb-0 mr-0">
               </div>
             </div>
@@ -214,14 +219,62 @@
   <section id="resa" style="padding: 2em 0 2em 0;">
     <h2 class="text-black mb-5" style="text-align: center;"><i class="far fa-calendar-alt" style="margin-right: 1%;"></i>Réservation</h2>
 
-    <h5 class="text-black mb-5" style="text-align: center;">Les dates marquées en rouges ci-dessous sont déjà réservées</h5>
+    <h5 class="text-black mb-5" style="text-align: center;">Les dates marquées en rouges ci-dessous sont déjà réservées. Merci de <b>sélectionner la ou les date(s)</b> de votre choix.</h5>
 
     <div class="container">
+      <form id="form_resa" method="post">
+        {% csrf_token %}
       <div class="row" >
-        <div id="my-calendar" style="margin: 0 auto;">
+        <div class="col-lg-6">
+          <div id="my-calendar" style="margin: 12% auto;">
+          </div>
+          <h5 id="prix_resa" style="margin: 0% auto; padding: 2%; text-align: center; width: 30%; height: 10%; background-color: #f6ece9;">Prix HT : <span id='price_to_change'></span>€</h5>
         </div>
-        
-
+        <div class="col-lg-6" style="margin: 0 auto;">
+            
+            <div>
+              <div class="row" id="details_resa">
+                <div class="col-lg-5">
+                  <h6><b>Type de prestation :</b></h6>
+                </div>
+                <div class="col-lg-6">
+                  <div class="radio">
+                    <label><input type="radio" name="optradio1" id="radio_fete" value="radio_fete" checked>Fête / Réception</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="radio" name="optradio2" id="radio_pro" value="radio_pro">Professionel</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" name="email_resa" placeholder="Votre e-mail" required>
+            <input style="margin-top: 3%;" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name" name="name_resa" placeholder="Votre nom" required>
+            <input style="margin-top: 3%;" type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="phone_number" name="phone_number_resa" placeholder="Votre numéro de téléphone" required>
+            <textarea style="margin-top: 3%;" name="message_resa" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="5" placeholder="Description brève de l'évènement" required id="id_message_resa"></textarea>
+            <input type="hidden" name="dates_resa" id="dates_resa">
+        </div>
+        <p id="error_resa" style="color: #EE2324; margin: 0 auto;"></p>
+        <div class="col-lg-12" style="text-align: center;">
+          <button id="button_resa" style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Réserver</button>
+        </div>
+        <!-- Day click : <br> -->
+        <!-- <input id="my-input-a"><br> -->
+      </div>
+      </form>
+    </div>
+    <div id="modal_resa" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header" style="text-align: center;">      
+            <h4 class="modal-title" style="margin: 0 auto;">Réservation confirmée <i class="far fa-smile-beam"></i></h4>  
+          </div>
+          <div class="modal-body">
+            <p class="text-center">Votre réservation est bien prise en compte. Nous venons de vous envoyer un mail de confirmation</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -245,15 +298,31 @@
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
 
-          
-
-          <form>
-            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" name="email" placeholder="Votre E-Mail">
-            <input style="margin-top: 3%;" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name" name="name" placeholder="Votre nom">
-            <textarea style="margin-top: 3%;" name="message" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="10" placeholder="Message" required id="id_message"></textarea>
+  
+          <form id="form_contact" method="post">
+            {% csrf_token %}
+            <input required type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name_contact" name="name_contact" placeholder="Votre nom">
+            <input required type="email" style="margin-top: 3%;" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" name="email_contact" placeholder="Votre E-Mail">
+            <input required style="margin-top: 3%;" type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="phone_number" name="phone_number_contact" placeholder="Votre numéro de téléphone">
+            <textarea style="margin-top: 3%;" name="message_contact" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="10" placeholder="Message" required id="id_message"></textarea>
             <button style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Envoyer</button>
           </form>
 
+        </div>
+      </div>
+    </div>
+    <div id="modal_contact" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header" style="text-align: center;">      
+            <h4 class="modal-title" style="margin: 0 auto;">Message envoyé <i class="far fa-smile-beam"></i></h4>  
+          </div>
+          <div class="modal-body">
+            <p class="text-center">Merci pour votre message. Nous y répondrons dans les plus brefs délais.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+          </div>
         </div>
       </div>
     </div>
@@ -265,7 +334,7 @@
 
       <div class="row">
 
-        <div class="col-md-4 mb-3 mb-md-0">
+        <div class="col-md-4 mb-3 mb-md-0" id="card1">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-map-marked-alt accent-color mb-2"></i>
@@ -276,20 +345,20 @@
           </div>
         </div>
 
-        <div class="col-md-4 mb-3 mb-md-0">
+        <div class="col-md-4 mb-3 mb-md-0" id="card2">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-envelope accent-color mb-2"></i>
               <h4 class="text-uppercase m-0 primary-text-color">Email</h4>
               <hr class="my-4">
               <div class="small primary-text-color">
-                <a href="mailto:sallesaintvincent@gmail.com">sallesaintvincent@gmail.com</a>
+                <a href="mailto:sallesaintvincent@gmail.com">sallechezdudu@free.fr</a>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4 mb-3 mb-md-0">
+        <div class="col-md-4 mb-3 mb-md-0" id="card3">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-mobile-alt accent-color mb-2"></i>
@@ -326,13 +395,43 @@
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+
   <!-- Plugin JavaScript -->
   <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js" integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE=" crossorigin="anonymous"></script>
+
 
   <!-- Custom scripts for this template -->
-  <script src="{% static 'js/grayscale.min.js' %}"></script>
+  <script src="{% static 'js/grayscale.js' %}"></script>
   <script src="{% static 'js/jsCalendar.js' %}"></script>
+  <script src="{% static 'js/text-typed.js' %}"></script>
+  <script src="{% static 'js/scrollReveal.js' %}"></script>
 
+
+  {% if successful_booking %}
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('#modal_resa').modal('show');
+          });
+      </script>
+  {% endif %}
+
+  {% if successful_contact %}
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('#modal_contact').modal('show');
+          });
+      </script>
+  {% endif %}
+
+  <script type="text/javascript">
+    var price = 0
+    $("#price_to_change").text(price.toString())
+    const price_per_day = 50
+    const price_video = 20
+    const price_sono = 30
+    const price_dj = 40
+  </script>
 
   <script>
     popup = {
@@ -380,13 +479,46 @@
       // Create the calendar
       var myCalendar = jsCalendar.new(element);
       // Get the buttons
+      var list_of_dates = []
+
+      function isInArray(value, array) {
+        return array.indexOf(value) > -1;
+      }
+
+      {% for date in events_dates %}
+          myCalendar.select("{{ date }}")
+      {% endfor %}
+
+      myCalendar.onDateClick(function(event, date){
+        if (!myCalendar.isSelected_green(date)) {
+          if (!myCalendar.isSelected(date)) {
+            myCalendar.select_green(date)
+            list_of_dates.push(date)
+            document.getElementById("dates_resa").value = list_of_dates.join();
+            price = price + price_per_day
+          }
+        } else {
+          myCalendar.unselect_green(date)
+          list_of_dates.splice(list_of_dates.indexOf(date), 1);
+          price = price - price_per_day
+        }
+        $("#price_to_change").text(price.toString())
+      });
+
+      error_resa = false
+
+      $('#form_resa').on('submit', function(e){
+        if (list_of_dates.length == 0) {
+          e.preventDefault();
+          if (error_resa == false) {
+            $('#error_resa').append('Veuillez sélectionner au moins une date pour votre évènement.')
+            error_resa = true
+          }
+        }
+      });
   </script>
 
   <script type="text/javascript">
-    {% for date in events_dates %}
-        myCalendar.select("{{ date }}")
-    {% endfor %}
-
     $(document).ready(function() {
       //Set the carousel options
       $('#quote-carousel').carousel({
@@ -394,6 +526,71 @@
         interval: 4000,
       });
     });
+  </script>
+
+  <script type="text/javascript">
+    var current_radio = "fete"
+    var details_resa = $("#details_resa")
+
+    details_resa.append("<div class='col-lg-5' id='details_resa_fete_1'><h6><b>Vos besoins :</b></h6></div>")
+    details_resa.append("<div class='col-lg-6' id='details_resa_fete_2'><div class='checkbox'><label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label></div><div class='checkbox'><label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label></div><div class='checkbox'><label><input name='chkbox_dj' id='chkbox_dj' type='checkbox' value=''>DJ</label></div></div>")
+
+    $( "#radio_pro" ).click(function() {
+      $( "#radio_fete" ).prop('checked', false);
+      current_radio = "pro"
+
+
+      $("#details_resa_fete_1").remove()
+      $("#details_resa_fete_2").remove()
+
+      details_resa.append("<div class='col-lg-5' id='details_resa_pro_1'><h6><b>Vos besoins :</b></h6></div>")
+      details_resa.append("<div class='col-lg-6' id='details_resa_pro_2'><div class='checkbox'><label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label></div><div class='checkbox'><label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label></div></div>")
+    });
+
+    $( "#radio_fete" ).click(function() {
+      $( "#radio_pro" ).prop('checked', false);
+      if (current_radio !== "fete") {
+
+        current_radio = "fete"
+
+        $("#details_resa_pro_1").remove()
+        $("#details_resa_pro_2").remove()
+
+        details_resa.append("<div class='col-lg-5' id='details_resa_fete_1'><h6><b>Vos besoins :</b></h6></div>")
+        details_resa.append("<div class='col-lg-6' id='details_resa_fete_2'><div class='checkbox'><label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label></div><div class='checkbox'><label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label></div><div id='chkbox_dj' name='chkbox_dj' class='checkbox'><label><input type='checkbox' value=''>DJ</label></div></div>")
+      }
+
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    $("#chkbox_video").click(function() {
+      if ($("#chkbox_video").prop("checked")) {
+        price = price + price_video
+      } else {
+        price = price - price_video
+      }
+      $("#price_to_change").text(price.toString())
+    })
+
+    $("#chkbox_sono").click(function() {
+      if ($("#chkbox_sono").prop("checked")) {
+        price = price + price_sono
+      } else {
+        price = price - price_sono
+      }
+      $("#price_to_change").text(price.toString())
+    })
+
+    $("#chkbox_dj").click(function() {
+      if ($("#chkbox_dj").prop("checked")) {
+        price = price + price_dj
+      } else {
+        price = price - price_dj
+      }
+      $("#price_to_change").text(price.toString())
+    })
   </script>
 
 </body>

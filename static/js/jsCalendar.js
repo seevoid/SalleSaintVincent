@@ -26,6 +26,23 @@
  *
  */
 
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = dd + '/' + mm + '/' + yyyy;
+console.log("today : " + today)
+
 var jsCalendar = (function(){
 
     // Constructor
@@ -87,6 +104,7 @@ var jsCalendar = (function(){
         this._now = null;
         this._date = null;
         this._selected = [];
+        this._selected_green = [];
         // Language object
         this.language = {};
         // Parse options
@@ -249,7 +267,7 @@ var jsCalendar = (function(){
         // Set min calendar date
         if (typeof options.min !== 'undefined' && options.min !== 'false' && options.min !== false) {
             // Parse date
-            this._options.min = this._parseDate(options.min);
+            this._options.min = this._parseDate(today);
         }
         // Set max calendar date
         if (typeof options.max !== 'undefined' && options.max !== 'false' && options.max !== false) {
@@ -313,7 +331,7 @@ var jsCalendar = (function(){
         if (this._target.className.length > 0){
             this._target.className += ' ';
         }
-        this._target.className += 'jsCalendar material-theme green';
+        this._target.className += 'jsCalendar material-theme';
 
         // Create table
         this._elements.table = document.createElement('table');
@@ -649,6 +667,27 @@ var jsCalendar = (function(){
         }
     };
 
+    // Select dates on calendar
+    JsCalendar.prototype._selectDates_green = function(dates) {
+        // Copy array instance
+        dates = dates.slice();
+
+        // Parse dates
+        for (var i = 0; i < dates.length; i++) {
+            dates[i] = this._parseDate(dates[i]);
+            dates[i].setHours(0, 0, 0, 0);
+            dates[i] = dates[i].getTime();
+        }
+
+        // Insert dates on array
+        for (i = dates.length - 1; i >= 0; i--) {
+            // If not already selected
+            if (this._selected_green.indexOf(dates[i]) < 0) {
+                this._selected_green.push(dates[i]);
+            }
+        }
+    };
+
     // Un-select dates on calendar
     JsCalendar.prototype._unselectDates = function(dates) {
         // Copy array instance
@@ -668,6 +707,29 @@ var jsCalendar = (function(){
             index = this._selected.indexOf(dates[i]);
             if (index >= 0) {
                 this._selected.splice(index, 1);
+            }
+        }
+    };
+
+    // Un-select dates on calendar
+    JsCalendar.prototype._unselectDates_green = function(dates) {
+        // Copy array instance
+        dates = dates.slice();
+
+        // Parse dates
+        for (var i = 0; i < dates.length; i++) {
+            dates[i] = this._parseDate(dates[i]);
+            dates[i].setHours(0, 0, 0, 0);
+            dates[i] = dates[i].getTime();
+        }
+
+        // Remove dates of the array
+        var index;
+        for (i = dates.length - 1; i >= 0; i--) {
+            // If selected
+            index = this._selected_green.indexOf(dates[i]);
+            if (index >= 0) {
+                this._selected_green.splice(index, 1);
             }
         }
     };
@@ -703,10 +765,29 @@ var jsCalendar = (function(){
 
             // If date is selected
             if (this._selected.indexOf(month.days[i].getTime()) >= 0) {
+                // console.log("REd")
                 this._elements.bodyCols[i].className = 'jsCalendar-selected';
             }
             else {
                 this._elements.bodyCols[i].removeAttribute('class');
+            }
+
+        }
+
+        // Populate days
+        for (var i = month.days.length - 1; i >= 0; i--) {
+            text = month.days[i].getDate();
+            this._elements.bodyCols[i].textContent = (text < 10 ? prefix + text : text);
+
+            // If date is selected
+            if (this._selected_green.indexOf(month.days[i].getTime()) >= 0) {
+                if (this._elements.bodyCols[i].className != 'jsCalendar-selected') {
+                    this._elements.bodyCols[i].className = 'jsCalendar-selected-green';
+                }
+                
+            }
+            else {
+                // this._elements.bodyCols[i].removeAttribute('class');
             }
         }
 
@@ -949,6 +1030,28 @@ var jsCalendar = (function(){
         return this;
     };
 
+    // Select dates
+    JsCalendar.prototype.select_green = function(dates){
+        // If no arguments
+        if (typeof dates === 'undefined') {
+            // Return
+            return this;
+        }
+
+        // If dates not array
+        if (!(dates instanceof Array)) {
+            // Lets make it an array
+            dates = [dates];
+        }
+        // Select dates
+        this._selectDates_green(dates);
+        // Refresh
+        this.refresh();
+
+        // Return
+        return this;
+    };
+
     // Unselect dates
     JsCalendar.prototype.unselect = function(dates){
         // If no arguments
@@ -964,6 +1067,28 @@ var jsCalendar = (function(){
         }
         // Unselect dates
         this._unselectDates(dates);
+        // Refresh
+        this.refresh();
+
+        // Return
+        return this;
+    };
+
+    // Unselect dates
+    JsCalendar.prototype.unselect_green = function(dates){
+        // If no arguments
+        if (typeof dates === 'undefined') {
+            // Return
+            return this;
+        }
+
+        // If dates not array
+        if (!(dates instanceof Array)) {
+            // Lets make it an array
+            dates = [dates];
+        }
+        // Unselect dates
+        this._unselectDates_green(dates);
         // Refresh
         this.refresh();
 
@@ -1031,6 +1156,54 @@ var jsCalendar = (function(){
         return dates;
     };
 
+
+    // Get selected dates
+    JsCalendar.prototype.getSelected_green = function(options){
+        // Check if no options
+        if (typeof options !== 'object') {
+            options = {};
+        }
+
+        // Copy selected array
+        var dates = this._selected_green.slice();
+
+        // Options - Sort array
+        if (options.sort) {
+            if (options.sort === true) {
+                dates.sort();
+            }
+            else if (typeof options.sort === 'string') {
+                if (options.sort.toLowerCase() === 'asc') {
+                    dates.sort();
+                }
+                else if (options.sort.toLowerCase() === 'desc'){
+                    dates.sort();
+                    dates.reverse();
+                }
+            }
+        }
+
+        // Options - Data type
+        if (options.type && typeof options.type === 'string') {
+            var i;
+            // Convert to date object
+            if (options.type.toLowerCase() === 'date'){
+                for (i = dates.length - 1; i >= 0; i--) {
+                    dates[i] = new Date(dates[i]);
+                }
+            }
+            // If not a timestamp - convert to custom format
+            else if (options.type.toLowerCase() !== 'timestamp') {
+                for (i = dates.length - 1; i >= 0; i--) {
+                    dates[i] = this._parseToDateString(new Date(dates[i]), options.type);
+                }
+            }
+        }
+
+        // Return dates
+        return dates;
+    };
+
     // Check if date is selected
     JsCalendar.prototype.isSelected = function(date){
         // If no arguments or null
@@ -1046,6 +1219,29 @@ var jsCalendar = (function(){
 
         // If selected
         if (this._selected.indexOf(date) >= 0) {
+            return true;
+        }
+        // If not selected
+        else {
+            return false;
+        }
+    };
+
+    // Check if date is selected
+    JsCalendar.prototype.isSelected_green = function(date){
+        // If no arguments or null
+        if (typeof date === 'undefined' || date === null) {
+            // Return
+            return false;
+        }
+
+        // Parse date
+        date = this._parseDate(date);
+        date.setHours(0, 0, 0, 0);
+        date = date.getTime();
+
+        // If selected
+        if (this._selected_green.indexOf(date) >= 0) {
             return true;
         }
         // If not selected
