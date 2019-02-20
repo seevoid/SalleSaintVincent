@@ -16,14 +16,14 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, "static"),
 # )
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,8 +52,6 @@ INSTALLED_APPS = [
 
     'landing',
     'goldbook',
-
-    'tempus_dominus',
 ]
 
 TEMPUS_DOMINUS_LOCALIZE = True
@@ -135,6 +133,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'static'))
+# STATICFILES_DIRS = [
+#     os.path.normpath(os.path.join(BASE_DIR, 'static')),
+# ]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = '~/seevoid.pythonanywhere.com/static/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
