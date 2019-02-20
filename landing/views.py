@@ -9,6 +9,7 @@ from google.auth.transport.requests import Request
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
+from django.http import HttpResponseRedirect
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 service = None
@@ -16,19 +17,6 @@ UTC_France = ':00+01:00'
 BETWEEN_DATE_AND_TIME = 'T'
 
 # '2019-02-15T09:00'+UTC_France
-
-credentials_api_google = {
-	"installed":
-		{
-			"client_id":"1061910643677-jjslsk7j89af60472pnpcigmgs89se0j.apps.googleusercontent.com",
-			"project_id":"salledesfetes-1550045920643",
-			"auth_uri":"https://accounts.google.com/o/oauth2/auth",
-			"token_uri":"https://oauth2.googleapis.com/token",
-			"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-			"client_secret":"nlfWtFdf3abYVNe69GoRbQm4",
-			"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]
-		}
-}
 
 dico_months = {
 	'Jan': '01',
@@ -65,9 +53,6 @@ def home(request):
 	init_google_calendar()
 	events_dates_tuples = retreive_events()
 	events_dates = construct_list_of_dates(events_dates_tuples)
-	message = ""
-	successful_booking = False
-	successful_contact = False
 
 	if request.method == 'POST':
 		resaForm_ = resaForm(request.POST)
@@ -106,7 +91,10 @@ def home(request):
 					send_confirmation_mail(name, email, good_date_resa)
 					successful_booking = True
 				else:
-					message = "Des évènements ont déjà lieu pendant la ou les date(s) sélectionnée(s). Merci de changer vos choix."
+					print("Deja des events à ces dates là...")
+
+			messages.add_message(request, messages.SUCCESS, "successful_booking")
+			return HttpResponseRedirect("/")
 
 		if contactForm_.is_valid():
 			name = contactForm_.cleaned_data['name_contact']
@@ -117,10 +105,11 @@ def home(request):
 			try:
 				send_mail("Contact Salle Saint-Vincent", message, email, [settings.EMAIL_HOST_USER])
 				successful_contact = True
+				messages.add_message(request, messages.SUCCESS, "successful_contact")
+				return HttpResponseRedirect("/")
 			except BadHeaderError:
 				print("JE PASSE DANS LERREUR MAIL CONTACT")
 
-		messages.add_message(request, messages.WARNING, message)
 
 
 	events_dates_tuples = retreive_events()
@@ -135,7 +124,7 @@ def send_confirmation_mail(name, from_email, good_date_resa):
 		events_dates.append(date)
 
 	try:
-		message_name = "Cher " + name + "\n\n"
+		message_name = "Cher " + name + ",\n\n"
 		subject = "Confirmation de votre réservation"
 
 		if len(events_dates) == 1:
@@ -211,7 +200,6 @@ def retreive_events():
 		end_date = event['end'].get('dateTime', event['end'].get('date'))
 		start_date, end_date = convert_google_to_js(start_date, end_date)
 		events_dates.append((start_date, end_date))
-		print(start_date, event['summary'])
 
 	return events_dates
 

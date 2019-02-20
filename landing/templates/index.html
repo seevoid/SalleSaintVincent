@@ -463,26 +463,25 @@
   <script src="{% static 'js/scrollReveal.js' %}"></script>
 
 
-  {% if successful_booking %}
+  {% if messages %}
+    {% for message in messages %}
       <script type="text/javascript">
           $(document).ready(function(){
-              $('#modal_resa').modal('show');
+              if ("{{ message }}" === "successful_contact") {
+                $('#modal_contact').modal('show');  
+              }
+              if ("{{ message }}" === "successful_booking") {
+                $('#modal_resa').modal('show');  
+              }
           });
       </script>
-  {% endif %}
-
-  {% if successful_contact %}
-      <script type="text/javascript">
-          $(document).ready(function(){
-              $('#modal_contact').modal('show');
-          });
-      </script>
+      {% endfor %}
   {% endif %}
 
   <script type="text/javascript">
 
-    $('#error_resa').append('')
-    $('#error_contact').append('')
+    $('#error_resa').append(' ')
+    $('#error_contact').append(' ')
 
     var verif_phone_resa = false
     var verif_name_resa = false
