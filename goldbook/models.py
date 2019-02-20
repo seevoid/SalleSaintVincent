@@ -3,6 +3,7 @@ from django.db import models
 class GoldenMessage(models.Model):
 	name = models.CharField(max_length=100)
 	message = models.TextField(null=True)
+	title = models.CharField(max_length=100, default='title')
 	rate = models.IntegerField(default=0)
 
 	class Meta:
