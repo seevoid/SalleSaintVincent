@@ -17,6 +17,19 @@ BETWEEN_DATE_AND_TIME = 'T'
 
 # '2019-02-15T09:00'+UTC_France
 
+credentials_api_google = {
+	"installed":
+		{
+			"client_id":"1061910643677-jjslsk7j89af60472pnpcigmgs89se0j.apps.googleusercontent.com",
+			"project_id":"salledesfetes-1550045920643",
+			"auth_uri":"https://accounts.google.com/o/oauth2/auth",
+			"token_uri":"https://oauth2.googleapis.com/token",
+			"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+			"client_secret":"nlfWtFdf3abYVNe69GoRbQm4",
+			"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]
+		}
+}
+
 dico_months = {
 	'Jan': '01',
 	'Feb': '02',
@@ -241,7 +254,7 @@ def init_google_calendar():
 			creds.refresh(Request())
 		else:
 			flow = InstalledAppFlow.from_client_secrets_file(
-				"static/45(_ç_-789)à&_&è_(357899=()=è)ç_-'ç_à/credentials.json", SCOPES)
+				"static/credentials.json", SCOPES)
 			creds = flow.run_local_server()
 		# Save the credentials for the next run
 		with open('token.pickle', 'wb') as token:
