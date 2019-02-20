@@ -231,39 +231,62 @@
           <h5 id="prix_resa" style="margin: 0% auto; padding: 2%; text-align: center; width: 30%; height: 10%; background-color: #f6ece9;">Prix HT : <span id='price_to_change'></span>€</h5>
         </div>
         <div class="col-lg-6" style="margin: 0 auto;">
-              <div class="row">
-                <div class="col-lg-6">
-                  <h6><b>Type de prestation :</b></h6>
-                </div>
-                <div class="col-lg-6">
-                  <div class="radio">
-                    <label><input type="radio" name="optradio1" id="radio_fete" value="radio_fete" checked>Fête / Réception</label>
-                  </div>
-                  <div class="radio">
-                    <label><input type="radio" name="optradio2" id="radio_pro" value="radio_pro">Professionel</label>
-                  </div>
-                </div>
-
-                <div class="col-lg-6">
-                  <h6><b>Vos besoins :</b></h6>
-                </div>
-                <div class="col-lg-6">
-                  <div class='checkbox'>
-                    <label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label>
-                  </div>
-                  <div class='checkbox'>
-                    <label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label>
-                  </div>
-                  <div class='checkbox'>
-                    <label id='label_chkbox_dj'><input name='chkbox_dj' id='chkbox_dj' type='checkbox' value=''>DJ</label>
-                  </div>
-                </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <h6><b>Type de prestation :</b></h6>
             </div>
-            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" name="email_resa" placeholder="Votre e-mail" required>
-            <input style="margin-top: 3%;" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name" name="name_resa" placeholder="Votre nom" required>
-            <input style="margin-top: 3%;" type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="phone_number" name="phone_number_resa" placeholder="Votre numéro de téléphone" required>
-            <textarea style="margin-top: 3%;" name="message_resa" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="5" placeholder="Description brève de l'évènement" required id="id_message_resa"></textarea>
-            <input type="hidden" name="dates_resa" id="dates_resa">
+            <div class="col-lg-6">
+              <div class="radio">
+                <label><input type="radio" name="optradio1" id="radio_fete" value="radio_fete" checked>Fête / Réception</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" name="optradio2" id="radio_pro" value="radio_pro">Professionel</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <h6><b>Vos besoins :</b></h6>
+            </div>
+            <div class="col-lg-6">
+              <div class='checkbox'>
+                <label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label>
+              </div>
+              <div class='checkbox'>
+                <label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label>
+              </div>
+              <div class='checkbox'>
+                <label id='label_chkbox_dj'><input name='chkbox_dj' id='chkbox_dj' type='checkbox' value=''>DJ</label>
+              </div>
+            </div>
+            
+
+              <div class="col-lg-10">
+                <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" name="email_resa" placeholder="Votre e-mail" required>
+              </div>
+              <div style="margin-top: 1%;" class="col-lg-2">
+                 <span id="verif_email_resa"></span>
+              </div>
+              <div class="col-lg-10">
+                <input style="margin-top: 3%;" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name" name="name_resa" placeholder="Votre nom" required>
+              </div>
+              <div style="margin-top: 3%;" class="col-lg-2">
+                <span id="verif_name_resa"></span>
+              </div>
+              <div class="col-lg-10">
+                <input style="margin-top: 3%;" type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="phone_number_resa" name="phone_number_resa" placeholder="Votre numéro de téléphone" required>
+              </div>
+              <div style="margin-top: 3%;" class="col-lg-2">
+                <span id="verif_phone_resa"></span>
+              </div>
+              <div class="col-lg-10">
+                <textarea style="margin-top: 3%;" name="message_resa" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="5" placeholder="Description brève de l'évènement" required id="id_message_resa"></textarea>
+              </div>
+              <div style="margin-top: 3%;" class="col-lg-2">
+                <span id="verif_message_resa"></span>
+              </div>
+              <input type="hidden" name="dates_resa" id="dates_resa">
+
+          </div>
 
         </div>
         <p id="error_resa" style="color: #EE2324; margin: 0 auto;"></p>
@@ -316,7 +339,7 @@
             {% csrf_token %}
             <input required type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name_contact" name="name_contact" placeholder="Votre nom">
             <input required type="email" style="margin-top: 3%;" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" name="email_contact" placeholder="Votre E-Mail">
-            <input required style="margin-top: 3%;" type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="phone_number" name="phone_number_contact" placeholder="Votre numéro de téléphone">
+            <input required style="margin-top: 3%;" type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="phone_number_contact" name="phone_number_contact" placeholder="Votre numéro de téléphone">
             <textarea style="margin-top: 3%;" name="message_contact" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="10" placeholder="Message" required id="id_message"></textarea>
             <button style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Envoyer</button>
           </form>
@@ -425,6 +448,39 @@
           });
       </script>
   {% endif %}
+
+  <script type="text/javascript">
+
+    function validateEmail(email) {
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      return (email.length > 0 && emailReg.test($email));
+    }
+
+
+
+    $("#phone_number_resa").focusout(function(){
+      var numTel = $(this).val();
+      // var rgxPhone = /(([0-9]{2})[-. ]?){5}/
+      var rgxPhone = /(([0-9]{2})){5}/
+      if ( !numTel.match(rgxPhone)){
+        $("#verif_phone_resa").html('<i style="color: red;" class="fas fa-times"></i>')
+      }else{
+        $("#verif_phone_resa").html('<i style="color: green;" class="fas fa-check"></i>')
+      }
+    });
+
+    $("#phone_number_contact").focusout(function(){
+      var numTel = $(this).val();
+      // var rgxPhone = /(([0-9]{2})[-. ]?){5}/
+      var rgxPhone = /(([0-9]{2})){5}/
+      if ( !numTel.match(rgxPhone)){
+        console.log("Wrong Phone Number")
+      }else{
+        console.log("Good Phone Number")
+      }
+    });
+  </script>
+
 
   <script type="text/javascript">
     var price = 0
