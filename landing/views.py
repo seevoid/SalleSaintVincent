@@ -150,7 +150,7 @@ def send_confirmation_mail(name, from_email, good_date_resa):
 
 			message_name += "Nous avons bien pris en compte votre réservation pour les " + events_dates_str
 
-		message_name += "Nous vous contacterons par téléphone environ une semaine avant votre évènement. \n\nBien à vous, \nL'équipe Chez DUDU"
+		message_name += "\nNous vous contacterons par téléphone environ une semaine avant votre évènement. \n\nBien à vous, \nL'équipe Chez DUDU"
 		send_mail(subject, message_name, settings.EMAIL_HOST_USER, [from_email])
 	except BadHeaderError:
 		print("JE PASSE DANS LERREUR MAIL RESA")
