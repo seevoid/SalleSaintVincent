@@ -177,6 +177,8 @@ body {
 
 .btn-secondary {
   background-color: white;
+  color: #2B2E2B;
+  font-size: 60%;
 }
 
 .btn-secondary:hover {
