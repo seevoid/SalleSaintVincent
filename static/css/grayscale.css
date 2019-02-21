@@ -175,6 +175,25 @@ body {
   color: white;
 }
 
+.btn-secondary {
+  background-color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #2B2E2B;
+  color: white;
+}
+
+.btn-secondary:focus {
+  background-color: white !important;
+  color: white;
+}
+
+.btn-secondary:active {
+  background-color: white !important;
+  color: white;
+}
+
 .about-section {
   padding-top: 10rem;
   background: -webkit-gradient(linear, left top, left bottom, from(#161616), color-stop(75%, rgba(22, 22, 22, 0.9)), to(rgba(22, 22, 22, 0.8)));
