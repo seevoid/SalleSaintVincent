@@ -169,12 +169,12 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # STATICFILES_STORAGE = 'website.storage.WhiteNoiseStaticFilesStorage'
 
 
-Heroku: Update database configuration from $DATABASE_URL.
+#Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 
 db_from_env = dj_database_url.config(conn_max_age=500)
