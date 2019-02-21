@@ -28,3 +28,7 @@ Unidecode==1.0.23
 uritemplate==3.0.0
 urllib3==1.24.1
 wincertstore==0.2
+gunicorn
+dj-database-url
+psycopg2-binary
+whitenoise
