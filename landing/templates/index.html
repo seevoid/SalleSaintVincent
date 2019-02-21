@@ -467,10 +467,9 @@
   <script src="{% static 'js/scrollReveal.js' %}"></script>
   <script src="{% static 'js/general_minified.js' %}"></script>
 
-
-  {% if messages %}
-    {% for message in messages %}
-      <script type="text/javascript">
+  <script type="text/javascript">
+    "{% if messages %}"
+      "{% for message in messages %}"
           $(document).ready(function(){
               if ("{{ message }}" === "successful_contact") {
                 $('#modal_contact').modal('show');  
@@ -479,15 +478,17 @@
                 $('#modal_resa').modal('show');  
               }
           });
-      </script>
-      {% endfor %}
-  {% endif %}
+        "{% endfor %}"
+    "{% endif %}"
+  </script>
 
-  {% for date in events_dates %}
-    <script type="text/javascript">
+  
+  <script type="text/javascript">
+    "{% for date in events_dates %}"
       myCalendar.select("{{ date }}")
-    </script>
-  {% endfor %}
+    "{% endfor %}"
+  </script>
+  
 
 </body>
 
