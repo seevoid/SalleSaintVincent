@@ -188,12 +188,12 @@ body {
 
 .btn-secondary:focus {
   background-color: white !important;
-  color: white;
+  color: #2B2E2B;
 }
 
 .btn-secondary:active {
   background-color: white !important;
-  color: white;
+  color: #2B2E2B;
 }
 
 .about-section {
