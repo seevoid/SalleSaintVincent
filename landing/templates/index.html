@@ -484,9 +484,9 @@
 
   
   <script type="text/javascript">
-    "{% for date in events_dates %}"
+    {% for date in events_dates %}
       myCalendar.select("{{ date }}")
-    "{% endfor %}"
+    {% endfor %}
   </script>
   
 
