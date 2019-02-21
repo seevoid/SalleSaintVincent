@@ -409,6 +409,7 @@
                 <h4 class="text-uppercase m-0 primary-text-color">Addresse</h4>
                 <hr class="my-4">
                 <div class="small primary-text-color">27 rue National, 85110 Saint-Vincent Sterlanges</div>
+                <button class="btn">Ouvrir sur Google Maps</button>
               </div>
             </div>
             </a>
@@ -468,8 +469,8 @@
   <script src="{% static 'js/general_minified.js' %}"></script>
 
   <script type="text/javascript">
-    "{% if messages %}"
-      "{% for message in messages %}"
+    {% if messages %}
+      {% for message in messages %}
           $(document).ready(function(){
               if ("{{ message }}" === "successful_contact") {
                 $('#modal_contact').modal('show');  
@@ -478,8 +479,8 @@
                 $('#modal_resa').modal('show');  
               }
           });
-        "{% endfor %}"
-    "{% endif %}"
+        {% endfor %}
+    {% endif %}
   </script>
 
   
