@@ -125,10 +125,12 @@ def send_confirmation_mail(name, from_email, good_date_resa):
 
 	try:
 		message_name = "Cher " + name + ",\n\n"
+		message_dudu = name + " vient de réserver pour "
 		subject = "Confirmation de votre réservation"
 
 		if len(events_dates) == 1:
 			message_name += "Nous avons bien pris en compte votre réservation pour le " + events_dates[0]
+			message_dudu += "le " + events_dates[0]
 		else:
 			events_dates_str = ""
 			for i in range(len(events_dates)):
@@ -138,9 +140,15 @@ def send_confirmation_mail(name, from_email, good_date_resa):
 					events_dates_str += events_dates[i]
 
 			message_name += "Nous avons bien pris en compte votre réservation pour les " + events_dates_str
+			message_dudu += "les " + events_dates_str
 
 		message_name += "\nNous vous contacterons par téléphone environ une semaine avant votre évènement. \n\nBien à vous, \nL'équipe Chez DUDU"
 		send_mail(subject, message_name, settings.EMAIL_HOST_USER, [from_email])
+
+		#### Sending mail to sallechezdudu@gmail.com to prevent of the new booking
+		subject = "Nouvelle réservation"
+		message_dudu += "\nVoir l'agenda google pour plus d'informations sur la résa !" 
+		send_mail(subject, message_name, from_email, [settings.EMAIL_HOST_USER])
 	except BadHeaderError:
 		print("JE PASSE DANS LERREUR MAIL RESA")
 
