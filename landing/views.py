@@ -148,7 +148,7 @@ def send_confirmation_mail(name, from_email, good_date_resa):
 		#### Sending mail to sallechezdudu@gmail.com to prevent of the new booking
 		subject = "Nouvelle réservation"
 		message_dudu += "\nVoir l'agenda google pour plus d'informations sur la résa !" 
-		send_mail(subject, message_name, from_email, [settings.EMAIL_HOST_USER])
+		send_mail(subject, message_dudu, from_email, [settings.EMAIL_HOST_USER])
 	except BadHeaderError:
 		print("JE PASSE DANS LERREUR MAIL RESA")
 
