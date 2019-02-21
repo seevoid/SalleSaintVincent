@@ -299,6 +299,8 @@ body {
   color: #64a19d !important;
 }
 
+a { color: inherit; }
+
 footer {
   padding: 5rem 0;
   background-color: #2B2E2B;
