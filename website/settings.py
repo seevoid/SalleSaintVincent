@@ -172,7 +172,7 @@ SECURE_BROWSER_XSS_FILTER = True
 
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # STATICFILES_STORAGE = 'website.storage.WhiteNoiseStaticFilesStorage'
 
 
