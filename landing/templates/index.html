@@ -184,7 +184,7 @@
               <div class="project-text w-100 my-auto text-center text-lg-left">
                 <h4 class="accent-color" id="title1">Salle des fêtes</h4>
                 <p class="mb-0 primary-text-color" id="text-about1">Venez célébrer des mariages ou anniversaire. blablabla blablabla blablabla blablabla blablabla blablabla blablabla </p>
-              </br>
+                </br>
                 <p class="mb-0 primary-text-color" id="text-about1-2">blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablab</p>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
@@ -204,7 +204,7 @@
               <div class="project-text w-100 my-auto text-center text-lg-right">
                 <h4 class="accent-color" id="title2">Meetings professionnels</h4>
                 <p class="mb-0 primary-text-color" id="text-about2">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
-              </br>
+                </br>
                 <p class="mb-0 primary-text-color" id="text-about2-2">La salle se transforme en salle de réunion et/ou de meeting. Nous mettons à votre disposition une sono avec un micro ainsi qu'un vidéo-projecteur.</p>
                 <hr class="d-none d-lg-block mb-0 mr-0">
               </div>
@@ -224,42 +224,41 @@
     <div class="container">
       <form id="form_resa" method="post">
         {% csrf_token %}
-      <div class="row" >
-        <div class="col-lg-6">
-          <div id="my-calendar" style="margin: 12% auto;">
+        <div class="row" >
+          <div class="col-lg-6">
+            <div id="my-calendar" style="margin: 12% auto;">
+            </div>
+            <h5 id="prix_resa" style="margin: 0% auto; padding: 2%; text-align: center; width: 30%; height: 10%; background-color: #f6ece9;">Prix HT : <span id='price_to_change'></span>€</h5>
           </div>
-          <h5 id="prix_resa" style="margin: 0% auto; padding: 2%; text-align: center; width: 30%; height: 10%; background-color: #f6ece9;">Prix HT : <span id='price_to_change'></span>€</h5>
-        </div>
-        <div class="col-lg-6" style="margin: 0 auto;">
-          <div class="row">
-            <div class="col-lg-6">
-              <h6><b>Type de prestation :</b></h6>
-            </div>
-            <div class="col-lg-6">
-              <div class="radio">
-                <label><input type="radio" name="optradio1" id="radio_fete" value="radio_fete" checked>Fête / Réception</label>
+          <div class="col-lg-6" style="margin: 0 auto;">
+            <div class="row">
+              <div class="col-lg-6">
+                <h6><b>Type de prestation :</b></h6>
               </div>
-              <div class="radio">
-                <label><input type="radio" name="optradio2" id="radio_pro" value="radio_pro">Professionel</label>
+              <div class="col-lg-6">
+                <div class="radio">
+                  <label><input type="radio" name="optradio1" id="radio_fete" value="radio_fete" checked>Fête / Réception</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio2" id="radio_pro" value="radio_pro">Professionel</label>
+                </div>
               </div>
-            </div>
 
-            <div class="col-lg-6">
-              <h6><b>Vos besoins :</b></h6>
-            </div>
-            <div class="col-lg-6">
-              <div class='checkbox'>
-                <label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label>
+              <div class="col-lg-6">
+                <h6><b>Vos besoins :</b></h6>
               </div>
-              <div class='checkbox'>
-                <label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label>
+              <div class="col-lg-6">
+                <div class='checkbox'>
+                  <label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label>
+                </div>
+                <div class='checkbox'>
+                  <label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label>
+                </div>
+                <div class='checkbox'>
+                  <label id='label_chkbox_dj'><input name='chkbox_dj' id='chkbox_dj' type='checkbox' value=''>DJ</label>
+                </div>
               </div>
-              <div class='checkbox'>
-                <label id='label_chkbox_dj'><input name='chkbox_dj' id='chkbox_dj' type='checkbox' value=''>DJ</label>
-              </div>
-            </div>
             
-
               <div class="col-lg-10">
                 <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email_resa" name="email_resa" placeholder="Votre e-mail" required>
               </div>
@@ -285,19 +284,16 @@
                 <span id="verif_message_resa"></span>
               </div>
               <input type="hidden" name="dates_resa" id="dates_resa">
-
+            </div>
           </div>
-
+          <p id="error_resa" style="color: #EE2324; margin: 0 auto;"></p>
+          <div class="col-lg-12" style="text-align: center;">
+            <button id="button_resa" style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Réserver</button>
+          </div>
         </div>
-        <p id="error_resa" style="color: #EE2324; margin: 0 auto;"></p>
-        <div class="col-lg-12" style="text-align: center;">
-          <button id="button_resa" style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Réserver</button>
-        </div>
-        <!-- Day click : <br> -->
-        <!-- <input id="my-input-a"><br> -->
-      </div>
       </form>
     </div>
+
     <div id="modal_resa" class="modal fade">
       <div class="modal-dialog modal-confirm">
         <div class="modal-content">
@@ -313,9 +309,7 @@
         </div>
       </div>
     </div>
-
-
-    </section>
+  </section>
 
   <section id="contact" style="padding-top: 10%;">
     <div class="container">
@@ -397,25 +391,22 @@
   <!-- Contact Section -->
   <section class="contact-section" style="background-color: #2B2E2B;">
     <div class="container">
-
       <div class="row">
-
-        
-          <div class="col-md-4 mb-3 mb-md-0" id="card1">
-            <a href="https://www.google.fr/maps/place/27+Rue+nationale,+85110+Saint-Vincent-Sterlanges/@46.740556,-1.0881391,17z/data=!3m1!4b1!4m5!3m4!1s0x48068f2af46dec7d:0xc683741317d7027!8m2!3d46.740556!4d-1.0859504" target="_blank">
+        <div class="col-md-4 mb-3 mb-md-0" id="card1">
+          <a href="https://www.google.fr/maps/place/27+Rue+nationale,+85110+Saint-Vincent-Sterlanges/@46.740556,-1.0881391,17z/data=!3m1!4b1!4m5!3m4!1s0x48068f2af46dec7d:0xc683741317d7027!8m2!3d46.740556!4d-1.0859504" target="_blank">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
                 <i class="fas fa-map-marked-alt accent-color mb-2"></i>
                 <h4 class="text-uppercase m-0 primary-text-color">Addresse</h4>
                 <hr class="my-4">
-                <div class="small primary-text-color">27 rue National, 85110 Saint-Vincent Sterlanges</div>
+                <div class="small primary-text-color">27 rue National, 85110 Saint-Vincent Sterlanges
+                </div>
                 <button class="btn btn-secondary">Ouvrir sur Google Maps</button>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
         
-
         <div class="col-md-4 mb-3 mb-md-0" id="card2">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
@@ -489,9 +480,9 @@
 
   
   <script type="text/javascript">
-    {% for date in events_dates %}
+    "{% for date in events_dates %}"
       myCalendar.select("{{ date }}")
-    {% endfor %}
+    "{% endfor %}"
   </script>
   
 
