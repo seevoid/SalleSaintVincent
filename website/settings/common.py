@@ -24,6 +24,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 SECRET_KEY = 'r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'
+os.environ.setdefault("SECRET_KEY", "r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m")
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, "static"),
 # )
