@@ -1,7 +1,6 @@
 bashCommand = "export SECRET_KEY='r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'"
 import subprocess
-process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-output, error = process.communicate()
+subprocess.call(["export", "SECRET_KEY='r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'"])
 
 
 from website.settings.common import *
