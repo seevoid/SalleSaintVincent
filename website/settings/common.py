@@ -20,8 +20,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+from django.core.exceptions import ImproperlyConfigured
 
-SECRET_KEY = 'r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
+
+
+SECRET_KEY = get_env_variable('SECRET_KEY')
+
+
+# SECRET_KEY = 'r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, "static"),
 # )
