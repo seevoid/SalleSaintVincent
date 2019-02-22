@@ -7,7 +7,7 @@ SECRET_KEY = 'r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'
 DEBUG = True
 
 STATICFILES_DIRS = [
-    os.path.normpath(os.path.join(BASE_DIR, 'static')),
+    os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_URL = '/static/'
 
