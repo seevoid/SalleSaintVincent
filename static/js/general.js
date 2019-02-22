@@ -168,9 +168,41 @@ popup = {
 popup.init()
 
 
-
-
 ////////////------ JSCALENDAR ------////////////
+
+var dict_month = {
+  "Jan": 1,
+  "Feb": 2,
+  "Mar": 3,
+  "Apr": 4,
+  "May": 5,
+  "Jun": 6,
+  "Jul": 7,
+  "Aug": 8,
+  "Sep": 9,
+  "Oct": 10,
+  "Nov": 11,
+  "Dec": 12
+};
+
+var today_date = new Date();
+var dd = today_date.getDate();
+var mm = today_date.getMonth()+1; //January is 0!
+var yyyy = today_date.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+if (mm.toString().slice(0,1) == "0") {
+  mm = mm.toString().slice(1,2)
+}
+
+today_date = dd + '/' + mm + '/' + yyyy;
 
 // Get the element
 var element = document.getElementById("my-calendar");
@@ -186,10 +218,27 @@ function isInArray(value, array) {
 myCalendar.onDateClick(function(event, date){
   if (!myCalendar.isSelected_green(date)) {
     if (!myCalendar.isSelected(date)) {
-      myCalendar.select_green(date)
-      list_of_dates.push(date)
-      document.getElementById("dates_resa").value = list_of_dates.join();
-      price = price + price_per_day
+      year = date.toString().slice(11,15)
+      month = dict_month[date.toString().slice(4,7)] 
+      day = date.toString().slice(8,10)
+
+      if (year >= parseInt(yyyy)) {
+        if (month == parseInt(mm)) {
+          if (day > (parseInt(dd))) {
+            myCalendar.select_green(date)
+            list_of_dates.push(date)
+            document.getElementById("dates_resa").value = list_of_dates.join();
+            price = price + price_per_day
+          }
+        } else if (month > parseInt(mm)){
+            myCalendar.select_green(date)
+            list_of_dates.push(date)
+            document.getElementById("dates_resa").value = list_of_dates.join();
+            price = price + price_per_day
+        }
+      }
+
+      
     }
   } else {
     myCalendar.unselect_green(date)

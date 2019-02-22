@@ -12,13 +12,13 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import whitenoise
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 
 
 # STATICFILES_DIRS = (
@@ -139,18 +139,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # STATICFILES_DIRS = [
 #     os.path.normpath(os.path.join(BASE_DIR, 'static')),
 # ]
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # The URL to use when referring to static files (where they will be served from)
-STATIC_URL = '/static/'
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -159,8 +157,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sallesaintvincent@gmail.com'
 EMAIL_HOST_PASSWORD = '$duduOnFire$*103'
 
+
 # CORS_REPLACE_HTTPS_REFERER      = False
-# HOST_SCHEME                     = "http://"
+# HOST_SCHEME                     = "https://"
 # SECURE_PROXY_SSL_HEADER         = None
 # SECURE_SSL_REDIRECT             = False
 # SESSION_COOKIE_SECURE           = False
@@ -169,6 +168,7 @@ EMAIL_HOST_PASSWORD = '$duduOnFire$*103'
 # SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 # SECURE_FRAME_DENY               = False
 
+########################## PRODUCTION ##########################
 
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
@@ -178,7 +178,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
 
-#Heroku: Update database configuration from $DATABASE_URL.
+
 import dj_database_url
 
 db_from_env = dj_database_url.config(conn_max_age=500)
