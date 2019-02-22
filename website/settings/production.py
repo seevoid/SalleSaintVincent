@@ -1,10 +1,5 @@
 from website.settings.common import *
 
-
-
-
-print("BASE_DIR : ", BASE_DIR)
-
 STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 
 STATIC_URL = '/static/'
@@ -23,7 +18,7 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-
+SECRET_KEY = 'r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'
 
 LOGGING = {
     'version': 1,
