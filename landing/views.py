@@ -115,7 +115,7 @@ def home(request):
 	events_dates_tuples = retreive_events()
 	events_dates = construct_list_of_dates(events_dates_tuples)
 
-	return render(request, 'index.html', locals())
+	return render(request, 'index_minified.html', locals())
 
 def send_confirmation_mail(name, from_email, good_date_resa):
 	events_dates = []
