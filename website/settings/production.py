@@ -1,3 +1,9 @@
+bashCommand = "export SECRET_KEY='r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'"
+import subprocess
+process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+output, error = process.communicate()
+
+
 from website.settings.common import *
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
