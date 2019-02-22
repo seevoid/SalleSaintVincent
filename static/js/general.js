@@ -215,6 +215,10 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
+{% for date in events_dates %}
+  myCalendar.select("{{ date }}")
+{% endfor %}
+
 myCalendar.onDateClick(function(event, date){
   if (!myCalendar.isSelected_green(date)) {
     if (!myCalendar.isSelected(date)) {
