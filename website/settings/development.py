@@ -9,3 +9,4 @@ DEBUG = True
 STATICFILES_DIRS = [
     os.path.normpath(os.path.join(BASE_DIR, 'static')),
 ]
+STATIC_URL = '/static/'
