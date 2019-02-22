@@ -26,4 +26,4 @@ def goldenbook(request):
 			goldenmessage.save()
 
 	goldenmessages = GoldenMessage.objects.all()
-	return render(request, 'goldenbook_minified.html', locals())
+	return render(request, 'goldenbook.html', locals())
