@@ -9,6 +9,8 @@ STATIC_URL = '/static/'
 
 SECRET_KEY = SECRET_KEY
 
+print("SECRET_KEY : ", SECRET_KEY)
+
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 SESSION_COOKIE_SECURE = True
@@ -25,20 +27,20 @@ DATABASES['default'].update(db_from_env)
 
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#              'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+#         },
+#     },
+# }
 
 
