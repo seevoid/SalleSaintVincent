@@ -455,36 +455,34 @@
   crossorigin="anonymous"></script>
 
 
+
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/grayscale_minified.js' %}"></script>
   <script src="{% static 'js/jsCalendar_minified.js' %}"></script>
   <script src="{% static 'js/text-typed.js' %}"></script>
   <script src="{% static 'js/scrollReveal.js' %}"></script>
-  <script src="{% static 'js/general.js' %}"></script>
+  <script src="{% static 'js/general_minified.js' %}"></script>
 
   <script type="text/javascript">
     {% if messages %}
       {% for message in messages %}
           $(document).ready(function(){
               if ("{{ message }}" === "successful_contact") {
-                $('#modal_contact').modal('show');  
+                $('#modal_contact').modal('show');
               }
               if ("{{ message }}" === "successful_booking") {
-                $('#modal_resa').modal('show');  
+                $('#modal_resa').modal('show');
               }
           });
         {% endfor %}
     {% endif %}
   </script>
 
-  
-<!--   <script type="text/javascript">
+  <script type="text/javascript">
     {% for date in events_dates %}
       myCalendar.select("{{ date }}")
     {% endfor %}
-  </script> -->
-  
-
+  </script>
+ 
 </body>
-
 </html>
