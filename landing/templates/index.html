@@ -67,12 +67,15 @@
 
   <!-- Header -->
   <header class="masthead">
-    <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase" id="title_big">Chez Dudu</h1>
+    <div class="container d-flex h-75 align-items-center">
+      <div class="mx-auto" style="min-width: 70%; height: 30%; background-color: #070E08;">
+        <!-- <div class="mx-auto my-0 text-uppercase" style="background-color: red; min-width: 200px; min-height: 100px;"></div> -->
+          <h1 class="mx-auto my-0 text-uppercase" style="text-align: center; color: #EE2325;" id="title_big">Chez Dudu</h1>
         <h2 class="text-white mx-auto mt-2 mb-5" id="text-typed"></h2>
-        <a href="#resa" class="btn btn-primary js-scroll-trigger">Réserver maintenant !</a>
       </div>
+    </div>
+    <div class="mx-auto container d-flex align-items-center">
+      <a href="#resa" class="mx-auto btn btn-primary js-scroll-trigger">Réserver maintenant !</a>
     </div>
   </header>
 
@@ -461,7 +464,7 @@
   <script src="{% static 'js/jsCalendar_minified.js' %}"></script>
   <script src="{% static 'js/text-typed.js' %}"></script>
   <script src="{% static 'js/scrollReveal.js' %}"></script>
-  <script src="{% static 'js/general_minified.js' %}"></script>
+  <script src="{% static 'js/general.js' %}"></script>
 
   <script type="text/javascript">
     {% if messages %}

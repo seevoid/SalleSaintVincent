@@ -59,17 +59,7 @@ $("#name_resa").focusout(function(){
   }
 });
 
-$("#message_resa").focusout(function(){
-  var message = $(this).val();
-  console.log("message : "+ message)
-  if (message.length < 50){
-    $("#verif_message_resa").html('<i style="color: red;" class="fas fa-times"></i>')
-    verif_message_resa = false
-  }else{
-    $("#verif_message_resa").html('<i style="color: green;" class="fas fa-check"></i>')
-    verif_message_resa = true
-  }
-});
+
 
 $("#phone_number_contact").focusout(function(){
   var numTel = $(this).val();
@@ -102,18 +92,6 @@ $("#name_contact").focusout(function(){
   }else{
     $("#verif_name_contact").html('<i style="color: green;" class="fas fa-check fa-lg"></i>')
     verif_name_contact = true
-  }
-});
-
-$("#message_contact").focusout(function(){
-  var message = $(this).val();
-  console.log("message : "+ message)
-  if (message.length < 50){
-    $("#verif_message_contact").html('<i style="color: red;" class="fas fa-times fa-lg"></i>')
-    verif_message_contact = false
-  }else{
-    $("#verif_message_contact").html('<i style="color: green;" class="fas fa-check fa-lg"></i>')
-    verif_message_contact = true
   }
 });
 
