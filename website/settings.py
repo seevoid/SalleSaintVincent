@@ -140,10 +140,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = [
-    os.path.normpath(os.path.join(BASE_DIR, 'static')),
-]
+
+
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 
@@ -158,6 +156,12 @@ EMAIL_HOST_USER = 'sallechezdudu@gmail.com'
 EMAIL_HOST_PASSWORD = '$duduOnFire$*103'
 
 
+
+########################## DEVELOPMENT ##########################
+
+# STATICFILES_DIRS = [
+#     os.path.normpath(os.path.join(BASE_DIR, 'static')),
+# ]
 # DEBUG = True
 # CORS_REPLACE_HTTPS_REFERER      = False
 # HOST_SCHEME                     = "http://"
@@ -174,6 +178,8 @@ EMAIL_HOST_PASSWORD = '$duduOnFire$*103'
 
 ########################## PRODUCTION ##########################
 DEBUG = False
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
