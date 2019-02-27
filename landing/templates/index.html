@@ -6,6 +6,7 @@
 <head>
 
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -30,6 +31,17 @@
   <link href="{% static 'css/gallery.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/quotes_carousel.css' %}">
   <link rel="stylesheet" href="{% static 'css/jsCalendar_minified.css' %}">
+
+
+  <!-- <script
+    src="https://www.paypal.com/sdk/js?client-id=ARz78qFiDZC-3I8PyvOOr_8xIykeHWCsw5Rabocf5b26pVuobN9-qDe5bDKUfQDwdQCaB7Mr-VWrhB_E&currency=EUR">
+  </script> -->
+
+
+
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AX_RhLL5YoKx8LXj256GLK73Da5UTSQY4rAzKdNTy0Xt4jMf237_YaNYmrVwelx6J4-21uiaMDfMD5Jj&currency=EUR">
+  </script>
 
 </head>
 
@@ -291,6 +303,15 @@
           </div>
           <p id="error_resa" style="color: #EE2324; margin: 0 auto;"></p>
           <div class="col-lg-12" style="text-align: center;">
+            <h6><b>Souhaitez-vous régler en ligne ?</b></h6>
+            <div class="radio">
+              <label><input type="radio" name="online_payment_yes" id="online_payment_yes" value="online_payment_yes" checked>Oui</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="online_payment_no" id="online_payment_no" value="online_payment_no">Non</label>
+            </div>
+          </div>
+          <div class="col-lg-12" style="text-align: center;">
             <button id="button_resa" style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Réserver</button>
           </div>
         </div>
@@ -301,13 +322,48 @@
       <div class="modal-dialog modal-confirm">
         <div class="modal-content">
           <div class="modal-header" style="text-align: center;">      
-            <h4 class="modal-title" style="margin: 0 auto;">Réservation confirmée <i class="far fa-smile-beam"></i></h4>  
+            <h4 class="modal-title" style="margin: 0 auto;">Réservation en attente <i class="far fa-smile-beam"></i></h4>  
           </div>
           <div class="modal-body">
-            <p class="text-center">Votre réservation est bien prise en compte. Nous venons de vous envoyer un mail de confirmation</p>
+            <p class="text-center">Votre réservation est bien prise en compte mais est pour l'instant en attente. Nous venons de vous envoyer un e-mail vous expliquant les modalités.</p>
           </div>
           <div class="modal-footer">
             <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal_payment_success" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-header" style="text-align: center;">      
+            <h4 class="modal-title" style="margin: 0 auto;">Réservation en attente <i class="far fa-smile-beam"></i></h4>  
+          </div>
+        <div class="modal-content">
+          <div class="modal-body">
+            <p class="text-center">Votre réservation est bien prise en compte. Nous venons de vous envoyer un mail de confirmation. Veuillez </p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal_payment" class="modal fade bd-example-modal-lg">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="container">
+            <div class="row text-center">
+              <div class="col-lg-2"></div>
+              <div class="col-lg-8">
+                <div style="text-align: center;">
+                  <h2 class="primary-text-color" style="text-align: center;">Veuillez choisir votre moyen de paiement :</h2>
+                </div>
+                <div id="paypal-button-container" style="margin-top: 10%;"></div>
+              </div>
+              <div class="col-lg-2"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -445,6 +501,10 @@
     </div>
   </footer>
 
+
+
+
+
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
@@ -465,16 +525,22 @@
   <script src="{% static 'js/text-typed.js' %}"></script>
   <script src="{% static 'js/scrollReveal.js' %}"></script>
   <script src="{% static 'js/general.js' %}"></script>
+  <script src="{% static 'js/payment.js' %}"></script>
 
   <script type="text/javascript">
     {% if messages %}
       {% for message in messages %}
+        console.log("{{ message }}")
           $(document).ready(function(){
               if ("{{ message }}" === "successful_contact") {
                 $('#modal_contact').modal('show');
               }
               if ("{{ message }}" === "successful_booking") {
                 $('#modal_resa').modal('show');
+              }
+              if ("{{ message }}" === "successful_payment") {
+                console.log("COUCOU PAIMENT OK")
+                $('#modal_payment_success').modal('show');
               }
           });
         {% endfor %}

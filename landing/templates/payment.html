@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Salle Chez Dudu</title>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.css' %}" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/grayscale.css' %}" rel="stylesheet">
+  <link href="{% static 'css/palette_minified.css' %}" rel="stylesheet">
+  <link href="{% static 'css/gallery.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/quotes_carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jsCalendar_minified.css' %}">
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'js/grayscale_minified.js' %}"></script>
+  <script src="{% static 'js/jsCalendar_minified.js' %}"></script>
+  <script src="{% static 'js/text-typed.js' %}"></script>
+  <script src="{% static 'js/scrollReveal.js' %}"></script>
+  <script src="{% static 'js/general.js' %}"></script>
+
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AX_RhLL5YoKx8LXj256GLK73Da5UTSQY4rAzKdNTy0Xt4jMf237_YaNYmrVwelx6J4-21uiaMDfMD5Jj&currency=EUR">
+  </script>
+
+
+
+</head>
+
+
+<body id="page-top">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <div style="text-align: center;">
+          <h2 class="primary-text-color" style="text-align: center;">Veuillez choisir votre moyen de paiement :</h2>
+        </div>
+        <div id="paypal-button-container" style="margin-top: 10%;"></div>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+  
+
+
+
+
+</body>
+
+<script src="{% static 'js/payment.js' %}"></script>

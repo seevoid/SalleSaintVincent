@@ -7,16 +7,18 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from django.contrib import messages
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 service = None
 UTC_France = ':00+01:00'
 BETWEEN_DATE_AND_TIME = 'T'
 
-# '2019-02-15T09:00'+UTC_France
+
+FROM_PAYAL = False
 
 dico_months = {
 	'Jan': '01',
@@ -47,9 +49,20 @@ event = {
       },
     }
 
+dico_resa = {
+	'name': None,
+	'email': None,
+	'phone': None,
+	'good_date_resa': None,
+	'presta': None,
+	'needs': None,
+	'description': None
+}
+
 # Create your views here.
 def home(request):
-
+	global FROM_PAYAL 
+	FROM_PAYAL = False
 	init_google_calendar()
 	events_dates_tuples = retreive_events()
 	events_dates = construct_list_of_dates(events_dates_tuples)
@@ -58,11 +71,11 @@ def home(request):
 		resaForm_ = resaForm(request.POST)
 		contactForm_ = contactForm(request.POST)
 		if resaForm_.is_valid():
-			name = resaForm_.cleaned_data['name_resa']
-			email = resaForm_.cleaned_data['email_resa']
+			dico_resa['name'] = name = resaForm_.cleaned_data['name_resa']
+			dico_resa['email'] = email = resaForm_.cleaned_data['email_resa']
 			dates_resa = resaForm_.cleaned_data['dates_resa']
-			phone = resaForm_.cleaned_data['phone_number_resa']
-			description = resaForm_.cleaned_data['message_resa']
+			dico_resa['phone'] = phone = resaForm_.cleaned_data['phone_number_resa']
+			dico_resa['description'] = description = resaForm_.cleaned_data['message_resa']
 			needs = []
 
 			post_dict = request.POST.dict()
@@ -77,24 +90,30 @@ def home(request):
 					needs.append("Sono et Micro")
 				if key == 'chkbox_dj':
 					needs.append("DJ")
-				
-			if dates_resa == '':
-				message = "Aucune(s) date(s) sélectionnée(s)."
+				if key == 'chkbox_dj':
+					needs.append("DJ")
+				if key == 'online_payment_yes':
+					online_payment = True
+				if key == 'online_payment_no':
+					online_payment = False
+
+			dates_resa_list = dates_resa.split(",")
+			good_date_resa = []
+			for date in dates_resa_list:
+				good_date_resa.append(convert_js_to_google(date))
+
+			dico_resa['good_date_resa'] = good_date_resa
+			dico_resa['presta'] = presta
+			dico_resa['needs'] = needs
+
+			if online_payment:
+				return render(request, 'payment.html', locals()) 
 			else:
-				dates_resa_list = dates_resa.split(",")
-				good_date_resa = []
-				for date in dates_resa_list:
-					good_date_resa.append(convert_js_to_google(date))
-
-				if check_dates_before_creation(events_dates, good_date_resa):
-					create_event(name, email, phone, good_date_resa, presta, needs, description)
-					send_confirmation_mail(name, email, good_date_resa)
-					successful_booking = True
-				else:
-					print("Deja des events à ces dates là...")
-
-			messages.add_message(request, messages.SUCCESS, "successful_booking")
-			return HttpResponseRedirect("/")
+				create_event(name, email, phone, good_date_resa, presta, needs, description)
+				send_confirmation_mail(name, email, good_date_resa, False)
+				successful_booking = True
+				messages.add_message(request, messages.SUCCESS, "successful_booking")
+				return HttpResponseRedirect("/")
 
 		if contactForm_.is_valid():
 			name = contactForm_.cleaned_data['name_contact']
@@ -117,7 +136,27 @@ def home(request):
 
 	return render(request, 'index.html', locals())
 
-def send_confirmation_mail(name, from_email, good_date_resa):
+@csrf_exempt
+def paypal_success(request):
+	global FROM_PAYAL 
+	global dico_resa
+
+	if request.method == 'POST':
+		FROM_PAYAL = True
+		return render(request, 'index.html', locals())
+
+	if FROM_PAYAL:
+		create_event(dico_resa['name'], dico_resa['email'], dico_resa['phone'], dico_resa['good_date_resa'], dico_resa['presta'], dico_resa['needs'], dico_resa['description'])
+		send_confirmation_mail(dico_resa['name'], dico_resa['email'], dico_resa['good_date_resa'], True)
+		successful_booking = True
+		messages.add_message(request, messages.SUCCESS, "successful_payment")
+		return render(request, 'paypal_success.html', locals())
+	else:
+		return HttpResponseRedirect("/")
+	
+
+
+def send_confirmation_mail(name, from_email, good_date_resa, paypal):
 	events_dates = []
 	for d in good_date_resa:
 		date = d[8:10] + '/' + d[5:7] + '/' + d[:4]
@@ -141,9 +180,20 @@ def send_confirmation_mail(name, from_email, good_date_resa):
 
 			message_name += "Nous avons bien pris en compte votre réservation pour les " + events_dates_str
 			message_dudu += "les " + events_dates_str
+			message_dudu += "\n Vous trouverez en pièce jointe la caution à nous renvoyer signée blablabla"
 
-		message_name += "\nNous vous contacterons par téléphone environ une semaine avant votre évènement. \n\nBien à vous, \nL'équipe Chez DUDU"
-		send_mail(subject, message_name, settings.EMAIL_HOST_USER, [from_email])
+		if paypal:
+			message_name += "\nPour validée celle-ci nous vous demandons de bien nous renvoyer la caution signée en pièce jointe, dans un délai de 15 jours.\nNous vous contacterons par téléphone environ une semaine avant votre évènement."
+		else:
+			message_name += "\nElle sera validée et confirmée lorsque nous aurons reçu un chèque de caution d'une valeur de XX€ ainsi que le document de la caution signé, dans un délai de 15 jours."
+
+		message_name += "\n\nBien à vous, \nL'équipe Chez DUDU"
+
+		#### Sending confirmation email to the client with the pdf document in attach file
+		email_to_send = EmailMessage(subject, message_name, from_email=settings.EMAIL_HOST_USER, to=[from_email])
+		email_to_send.attach_file('./static/other/caution.pdf')
+		email_to_send.send()
+		
 
 		#### Sending mail to sallechezdudu@gmail.com to prevent of the new booking
 		subject = "Nouvelle réservation"

@@ -1,4 +1,3 @@
-$('#error_resa').append(' ')
 $('#error_contact').append(' ')
 
 var price = 0
@@ -11,12 +10,10 @@ const price_dj = 40
 var verif_phone_resa = false
 var verif_name_resa = false
 var verif_email_resa = false
-var verif_message_resa = false
 
 var verif_phone_contact = false
 var verif_name_contact = false
 var verif_email_contact = false
-var verif_message_contact = false
 
 ////////////------ FORMS VERIFICATION ------////////////
 
@@ -59,6 +56,17 @@ $("#name_resa").focusout(function(){
   }
 });
 
+$("#message_resa").focusout(function(){
+  var message = $(this).val();
+  if (message.length > 0){
+    $("#verif_message_resa").html('<i style="color: green;" class="fas fa-check"></i>')
+    verif_message_resa = true
+  }else{
+    $("#verif_message_resa").html('<i style="color: red;" class="fas fa-times"></i>')
+    verif_message_resa = false
+  }
+});
+
 
 
 $("#phone_number_contact").focusout(function(){
@@ -97,7 +105,7 @@ $("#name_contact").focusout(function(){
 
 
 $('#form_contact').on('submit', function(e){
-  if (!verif_phone_contact || !verif_email_contact || !verif_name_contact || !verif_message_contact) {
+  if (!verif_phone_contact || !verif_email_contact || !verif_name_contact) {
     e.preventDefault();
     $('#error_contact').remove()
     $('#error_contact').append('Veuillez correctement remplir les champs ci-dessus.')
@@ -193,9 +201,7 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
-{% for date in events_dates %}
-  myCalendar.select("{{ date }}")
-{% endfor %}
+
 
 myCalendar.onDateClick(function(event, date){
   if (!myCalendar.isSelected_green(date)) {
@@ -236,17 +242,22 @@ $('#form_resa').on('submit', function(e){
   if (list_of_dates.length == 0) {
     e.preventDefault();
     if (error_resa == false) {
-      $('#error_resa').remove()
-      $('#error_resa').append('Veuillez sélectionner au moins une date pour votre évènement.')
+      $('#error_resa').text('Veuillez sélectionner au moins une date pour votre évènement.')
       error_resa = true
     }
   }
 
   if (!verif_phone_resa || !verif_email_resa || !verif_name_resa || !verif_message_resa) {
     e.preventDefault();
-    $('#error_resa').remove()
-    $('#error_resa').append('Veuillez correctement remplir les champs ci-dessus.')
+    console.log("COUCOU")
+    $('#error_resa').text('Veuillez correctement remplir les champs ci-dessus.')
   }
+
+  if ($( "#online_payment_yes" ).prop('checked')) {
+    e.preventDefault();
+    $('#modal_payment').modal('show');
+  }
+
 });
 
 
@@ -267,29 +278,28 @@ $(document).ready(function() {
 
 ////////////------ PRICE MODIFICATION WITH CHECKBOXES ------////////////
 
-var current_radio = "fete"
+var current_radio_presta = "fete"
+
 var chkbox_dj = $("#label_chkbox_dj")
 
 $( "#radio_pro" ).click(function() {
   $( "#radio_fete" ).prop('checked', false);
-  current_radio = "pro"
+  current_radio_presta = "pro"
 
   chkbox_dj.css({'opacity': '0', 'position': 'absolute'});
 });
 
 $( "#radio_fete" ).click(function() {
   $( "#radio_pro" ).prop('checked', false);
-  if (current_radio !== "fete") {
+  if (current_radio_presta !== "fete") {
 
-    current_radio = "fete"
+    current_radio_presta = "fete"
 
     chkbox_dj.css({'opacity': '100', 'position': 'relative'});
   }
-
 });
 
 $("#chkbox_video").click(function() {
-  console.log("CLICKED")
   if ($("#chkbox_video").prop("checked")) {
     price = price + price_video
   } else {
@@ -315,3 +325,21 @@ $("#chkbox_dj").click(function() {
   }
   $("#price_to_change").text(price.toString())
 })
+
+
+
+
+////////////------ Online Payment Radio buttons ------////////////
+var current_radio_payment = "yes"
+
+$( "#online_payment_no" ).click(function() {
+  $( "#online_payment_yes" ).prop('checked', false);
+  current_radio_presta = "no"
+});
+
+$( "#online_payment_yes" ).click(function() {
+  $( "#online_payment_no" ).prop('checked', false);
+  if (current_radio_presta !== "yes") {
+    current_radio_presta = "yes"
+  }
+});

@@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'r4$tlly+kl=(vbt2eiwf*%4)4341z%e(&ua*c6)a7s$h3fvn0m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -140,10 +140,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-# STATICFILES_DIRS = [
-#     os.path.normpath(os.path.join(BASE_DIR, 'static')),
-# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    os.path.normpath(os.path.join(BASE_DIR, 'static')),
+]
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 
@@ -158,17 +158,22 @@ EMAIL_HOST_USER = 'sallechezdudu@gmail.com'
 EMAIL_HOST_PASSWORD = '$duduOnFire$*103'
 
 
+# DEBUG = True
 # CORS_REPLACE_HTTPS_REFERER      = False
-# HOST_SCHEME                     = "https://"
+# HOST_SCHEME                     = "http://"
 # SECURE_PROXY_SSL_HEADER         = None
-# SECURE_SSL_REDIRECT             = False
-# SESSION_COOKIE_SECURE           = False
-# CSRF_COOKIE_SECURE              = False
 # SECURE_HSTS_SECONDS             = None
 # SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 # SECURE_FRAME_DENY               = False
+# CSRF_COOKIE_SECURE = False
+# X_FRAME_OPTIONS = 'DENY'
+# SESSION_COOKIE_SECURE = False
+# SECURE_SSL_REDIRECT = False
+# SECURE_CONTENT_TYPE_NOSNIFF = False
+# SECURE_BROWSER_XSS_FILTER = False
 
 ########################## PRODUCTION ##########################
+DEBUG = False
 
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
@@ -176,6 +181,10 @@ SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
+CORS_REPLACE_HTTPS_REFERER      = True
+HOST_SCHEME                     = "https://"
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+SECURE_FRAME_DENY               = True
 
 
 

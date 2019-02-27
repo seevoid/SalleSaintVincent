@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Salle Chez Dudu</title>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.css' %}" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/grayscale.css' %}" rel="stylesheet">
+  <link href="{% static 'css/palette_minified.css' %}" rel="stylesheet">
+  <link href="{% static 'css/gallery.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/quotes_carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jsCalendar_minified.css' %}">
+
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AX_RhLL5YoKx8LXj256GLK73Da5UTSQY4rAzKdNTy0Xt4jMf237_YaNYmrVwelx6J4-21uiaMDfMD5Jj&currency=EUR">
+  </script>
+
+</head>
+
+<body id="page-top">
+
+  <div class="container">
+    <div class="row text-center">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
+          <br><br> <h2 style="color:#0fad00">Paiement validé !</h2>
+          <p style="font-size:20px;color:#5C5C5C;">Nous avons bien reçu votre paiement. Votre réservation est maintenant active et confirmée. Un e-mail vous sera envoyé très prochainement. </p>
+          <a href="{% url 'home' %}" class="btn btn-success">     Continuer      </a>
+      <br><br>
+          </div>
+          
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+</body>
