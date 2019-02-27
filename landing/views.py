@@ -9,7 +9,7 @@ from google.auth.transport.requests import Request
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
@@ -17,7 +17,7 @@ service = None
 UTC_France = ':00+01:00'
 BETWEEN_DATE_AND_TIME = 'T'
 
-
+PRICE_TO_PAY = None
 FROM_PAYAL = False
 
 dico_months = {
@@ -107,6 +107,7 @@ def home(request):
 			dico_resa['needs'] = needs
 
 			if online_payment:
+				price = PRICE_TO_PAY
 				return render(request, 'payment.html', locals()) 
 			else:
 				create_event(name, email, phone, good_date_resa, presta, needs, description)
@@ -136,6 +137,7 @@ def home(request):
 
 	return render(request, 'index.html', locals())
 
+
 @csrf_exempt
 def paypal_success(request):
 	global FROM_PAYAL 
@@ -154,6 +156,16 @@ def paypal_success(request):
 	else:
 		return HttpResponseRedirect("/")
 	
+
+@csrf_exempt
+def set_price(request):
+	global PRICE_TO_PAY
+	if request.method == 'POST':
+		post_dict = request.POST.dict()
+
+		PRICE_TO_PAY = post_dict['price']
+
+		return HttpResponse(content_type="text/plain", status=200)
 
 
 def send_confirmation_mail(name, from_email, good_date_resa, paypal):

@@ -32,11 +32,20 @@
   <link rel="stylesheet" href="{% static 'css/quotes_carousel.css' %}">
   <link rel="stylesheet" href="{% static 'css/jsCalendar_minified.css' %}">
 
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.js' %}"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+  crossorigin="anonymous"></script>
+
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/grayscale_minified.js' %}"></script>
-  <script src="{% static 'js/jsCalendar_minified.js' %}"></script>
-  <script src="{% static 'js/text-typed.js' %}"></script>
-  <script src="{% static 'js/scrollReveal.js' %}"></script>
   <script src="{% static 'js/general.js' %}"></script>
 
   <script
@@ -61,11 +70,11 @@
       <div class="col-lg-2"></div>
     </div>
   </div>
-  
-
-
-
 
 </body>
+
+<script type="text/javascript">
+  var price = "{{ price }}"
+</script>
 
 <script src="{% static 'js/payment.js' %}"></script>

@@ -239,6 +239,9 @@ myCalendar.onDateClick(function(event, date){
 error_resa = false
 
 $('#form_resa').on('submit', function(e){
+
+  $.post( "/set_price", { price: price } );
+
   if (list_of_dates.length == 0) {
     e.preventDefault();
     if (error_resa == false) {
@@ -251,11 +254,6 @@ $('#form_resa').on('submit', function(e){
     e.preventDefault();
     console.log("COUCOU")
     $('#error_resa').text('Veuillez correctement remplir les champs ci-dessus.')
-  }
-
-  if ($( "#online_payment_yes" ).prop('checked')) {
-    e.preventDefault();
-    $('#modal_payment').modal('show');
   }
 
 });

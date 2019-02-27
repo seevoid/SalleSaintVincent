@@ -39,10 +39,6 @@
 
 
 
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=AX_RhLL5YoKx8LXj256GLK73Da5UTSQY4rAzKdNTy0Xt4jMf237_YaNYmrVwelx6J4-21uiaMDfMD5Jj&currency=EUR">
-  </script>
-
 </head>
 
 <body id="page-top">
@@ -336,34 +332,15 @@
 
     <div id="modal_payment_success" class="modal fade">
       <div class="modal-dialog modal-confirm">
-        <div class="modal-header" style="text-align: center;">      
-            <h4 class="modal-title" style="margin: 0 auto;">Réservation en attente <i class="far fa-smile-beam"></i></h4>  
-          </div>
         <div class="modal-content">
+          <div class="modal-header" style="text-align: center;">      
+            <h4 class="modal-title" style="margin: 0 auto;">Réservation acceptée <i class="far fa-smile-beam"></i></h4>  
+          </div>
           <div class="modal-body">
             <p class="text-center">Votre réservation est bien prise en compte. Nous venons de vous envoyer un mail de confirmation. Veuillez </p>
           </div>
           <div class="modal-footer">
             <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="modal_payment" class="modal fade bd-example-modal-lg">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="container">
-            <div class="row text-center">
-              <div class="col-lg-2"></div>
-              <div class="col-lg-8">
-                <div style="text-align: center;">
-                  <h2 class="primary-text-color" style="text-align: center;">Veuillez choisir votre moyen de paiement :</h2>
-                </div>
-                <div id="paypal-button-container" style="margin-top: 10%;"></div>
-              </div>
-              <div class="col-lg-2"></div>
-            </div>
           </div>
         </div>
       </div>
@@ -525,7 +502,6 @@
   <script src="{% static 'js/text-typed.js' %}"></script>
   <script src="{% static 'js/scrollReveal.js' %}"></script>
   <script src="{% static 'js/general.js' %}"></script>
-  <script src="{% static 'js/payment.js' %}"></script>
 
   <script type="text/javascript">
     {% if messages %}
