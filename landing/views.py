@@ -195,8 +195,10 @@ def send_confirmation_mail(name, from_email, good_date_resa, paypal):
 			message_dudu += "\n Vous trouverez en pièce jointe la caution à nous renvoyer signée blablabla"
 
 		if paypal:
+			message_dudu += "\n Paiement en ligne : OUI"
 			message_name += "\nPour validée celle-ci nous vous demandons de bien nous renvoyer la caution signée en pièce jointe, dans un délai de 15 jours.\nNous vous contacterons par téléphone environ une semaine avant votre évènement."
 		else:
+			message_dudu += "\n Paiement en ligne : NON"
 			message_name += "\nElle sera validée et confirmée lorsque nous aurons reçu un chèque de caution d'une valeur de XX€ ainsi que le document de la caution signé, dans un délai de 15 jours."
 
 		message_name += "\n\nBien à vous, \nL'équipe Chez DUDU"
