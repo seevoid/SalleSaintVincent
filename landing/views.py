@@ -130,8 +130,6 @@ def home(request):
 			except BadHeaderError:
 				print("JE PASSE DANS LERREUR MAIL CONTACT")
 
-
-
 	events_dates_tuples = retreive_events()
 	events_dates = construct_list_of_dates(events_dates_tuples)
 
