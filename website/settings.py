@@ -159,42 +159,42 @@ EMAIL_HOST_PASSWORD = '$duduOnFire$*103'
 
 ########################## DEVELOPMENT ##########################
 
-STATICFILES_DIRS = [
-    os.path.normpath(os.path.join(BASE_DIR, 'static')),
-]
-DEBUG = True
-CORS_REPLACE_HTTPS_REFERER      = False
-HOST_SCHEME                     = "http://"
-SECURE_PROXY_SSL_HEADER         = None
-SECURE_HSTS_SECONDS             = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-SECURE_FRAME_DENY               = False
-CSRF_COOKIE_SECURE = False
-X_FRAME_OPTIONS = 'DENY'
-SESSION_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
-SECURE_CONTENT_TYPE_NOSNIFF = False
-SECURE_BROWSER_XSS_FILTER = False
-
-########################## PRODUCTION ##########################
-# DEBUG = False
-
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
+# STATICFILES_DIRS = [
+#     os.path.normpath(os.path.join(BASE_DIR, 'static')),
+# ]
+# DEBUG = True
+# CORS_REPLACE_HTTPS_REFERER      = False
+# HOST_SCHEME                     = "http://"
+# SECURE_PROXY_SSL_HEADER         = None
+# SECURE_HSTS_SECONDS             = None
+# SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+# SECURE_FRAME_DENY               = False
 # CSRF_COOKIE_SECURE = False
 # X_FRAME_OPTIONS = 'DENY'
-# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = False
 # SECURE_SSL_REDIRECT = False
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_BROWSER_XSS_FILTER = True
-# CORS_REPLACE_HTTPS_REFERER      = True
-# HOST_SCHEME                     = "http://"
-# SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-# SECURE_FRAME_DENY               = True
+# SECURE_CONTENT_TYPE_NOSNIFF = False
+# SECURE_BROWSER_XSS_FILTER = False
+
+########################## PRODUCTION ##########################
+DEBUG = False
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+CSRF_COOKIE_SECURE = False
+X_FRAME_OPTIONS = 'DENY'
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+CORS_REPLACE_HTTPS_REFERER      = True
+HOST_SCHEME                     = "http://"
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+SECURE_FRAME_DENY               = True
 
 
 
-# import dj_database_url
+import dj_database_url
 
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
