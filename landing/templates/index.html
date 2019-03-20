@@ -67,9 +67,6 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'goldenbook' %}">Livre d'or</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -77,26 +74,28 @@
 
   <!-- Header -->
   <header class="masthead">
-    <div class="container d-flex h-75 align-items-center">
-      <div class="mx-auto" style="min-width: 70%; height: 30%; background-color: #070E08;">
-        <!-- <div class="mx-auto my-0 text-uppercase" style="background-color: red; min-width: 200px; min-height: 100px;"></div> -->
-          <h1 class="mx-auto my-0 text-uppercase" style="text-align: center; color: #EE2325;" id="title_big">Chez Dudu</h1>
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">Chez Dudu</h1>
         <h2 class="text-white mx-auto mt-2 mb-5" id="text-typed"></h2>
+        <a href="#resa" class="btn btn-primary js-scroll-trigger">Réserver maintenant !</a>
       </div>
-    </div>
-    <div class="mx-auto container d-flex align-items-center">
-      <a href="#resa" class="mx-auto btn btn-primary js-scroll-trigger">Réserver maintenant !</a>
     </div>
   </header>
 
   <!-- About Section -->
-  <section id="photos" class="about-section text-center">
-    <div class="container">
+  <section id="about" class="about-section text-center">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2 class="mb-4" style="color: #2B2E2B;">Tout types d'évènements</h2>
-          <p style="color: #2B2E2B; text-align: justify;">La famille BATY, est heureuse de vous proposer cette salle de 100m2 entièrement rénovée. Un espace convivial, chaleureux où vous pourrez organiser vos fêtes de familles, anniversaires, communion, baptême, vin d'honneur et aussi réunions professionnelles.
-Un coin cuisine avec 2 fours, lave vaisselle, réfrigérateurs, congélateurs, cafetière, micro-ondes, bouilloire le tout ouvert sur une salle avec  parquet. Des tables et chaises ainsi que la  vaisselle sont fournis. Le lieu est accessible aux personnes à mobilité réduite et dispose de son propre parking.</p>
+          <p style="color: #2B2E2B; text-align: justify;">La famille BATY, est heureuse de vous proposer cette salle de 100 m2 entièrement rénovée. Un lieu convivial, chaleureux où vous pourrez organiser vos fêtes de familles, anniversaires,communion, baptême, vin d’honneur et aussi réunions professionnelles. 
+          </br></br>
+          Pouvant accueillir jusqu’à 92 personnes.
+          </br></br>
+          A votre disposition, un coin cuisine avec 2 fours ménagers, un lave-vaisselle, 2 réfrigérateurs, 1 table réfrigérée, 1 congélateur, 1 four micro-ondes, bouilloire, cafetière. Le tout donnant sur une salle sur parquet. Vous aurez aussi des tables et des chaises, ainsi que de la vaisselle à votre disposition. Salle et WC accessible pour personne à mobilité réduite. Parking fermé. 
+          </br></br>
+          Location de salle à partir de 150 euros la journée. Possibilité de louer ½ journée au week-end. Avec autres avantages forfait ménage, sono…</p>
         </div>
       </div>
     </div>
@@ -185,7 +184,7 @@ Un coin cuisine avec 2 fours, lave vaisselle, réfrigérateurs, congélateurs, c
     </div>
   </section> -->
 
-  <section class="projects-section" id="about">
+  <section class="projects-section">
     <div class="container">
       <!-- Project One Row -->
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
@@ -233,119 +232,10 @@ Un coin cuisine avec 2 fours, lave vaisselle, réfrigérateurs, congélateurs, c
   <section id="resa" style="padding: 2em 0 2em 0;">
     <h2 class="text-black mb-5" style="text-align: center;"><i class="far fa-calendar-alt" style="margin-right: 1%;"></i>Réservation</h2>
 
-    <h5 class="text-black mb-5" style="text-align: center;">Les dates marquées en rouges ci-dessous sont déjà réservées. Merci de <b>sélectionner la ou les date(s)</b> de votre choix.</h5>
+    <h5 class="text-black mb-5" style="text-align: center;">Les dates marquées en rouges ci-dessous sont déjà réservées.</h5>
 
-    <div class="container">
-      <form id="form_resa" method="post">
-        {% csrf_token %}
-        <div class="row" >
-          <div class="col-lg-6">
-            <div id="my-calendar" style="margin: 12% auto;">
-            </div>
-            <h5 id="prix_resa" style="margin: 0% auto; padding: 2%; text-align: center; width: 30%; height: 10%; background-color: #f6ece9;">Prix HT : <span id='price_to_change'></span>€</h5>
-          </div>
-          <div class="col-lg-6" style="margin: 0 auto;">
-            <div class="row">
-              <div class="col-lg-6">
-                <h6><b>Type de prestation :</b></h6>
-              </div>
-              <div class="col-lg-6">
-                <div class="radio">
-                  <label><input type="radio" name="optradio1" id="radio_fete" value="radio_fete" checked>Fête / Réception</label>
-                </div>
-                <div class="radio">
-                  <label><input type="radio" name="optradio2" id="radio_pro" value="radio_pro">Professionel</label>
-                </div>
-              </div>
-
-              <div class="col-lg-6">
-                <h6><b>Vos besoins :</b></h6>
-              </div>
-              <div class="col-lg-6">
-                <div class='checkbox'>
-                  <label><input name='chkbox_video' id='chkbox_video' type='checkbox' value=''>Vidéo-projecteur</label>
-                </div>
-                <div class='checkbox'>
-                  <label><input name='chkbox_sono' id='chkbox_sono' type='checkbox' value=''>Sonorisation + Micro</label>
-                </div>
-                <div class='checkbox'>
-                  <label id='label_chkbox_dj'><input name='chkbox_dj' id='chkbox_dj' type='checkbox' value=''>DJ</label>
-                </div>
-              </div>
-            
-              <div class="col-lg-10">
-                <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email_resa" name="email_resa" placeholder="Votre e-mail" required>
-              </div>
-              <div style="margin-top: 1%;" class="col-lg-2">
-                 <span id="verif_email_resa"></span>
-              </div>
-              <div class="col-lg-10">
-                <input style="margin-top: 3%;" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="name_resa" name="name_resa" placeholder="Votre nom" required>
-              </div>
-              <div style="margin-top: 3%;" class="col-lg-2">
-                <span id="verif_name_resa"></span>
-              </div>
-              <div class="col-lg-10">
-                <input style="margin-top: 3%;" type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="phone_number_resa" name="phone_number_resa" placeholder="Votre numéro de téléphone" required>
-              </div>
-              <div style="margin-top: 3%;" class="col-lg-2">
-                <span id="verif_phone_resa"></span>
-              </div>
-              <div class="col-lg-10">
-                <textarea style="margin-top: 3%;" name="message_resa" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" cols="30" rows="5" placeholder="Description brève de l'évènement (50 caractères min)" required id="message_resa"></textarea>
-              </div>
-              <div style="margin-top: 3%;" class="col-lg-2">
-                <span id="verif_message_resa"></span>
-              </div>
-              <input type="hidden" name="dates_resa" id="dates_resa">
-            </div>
-          </div>
-          <p id="error_resa" style="color: #EE2324; margin: 0 auto;"></p>
-          <div class="col-lg-12" style="text-align: center;">
-            <h6><b>Souhaitez-vous régler en ligne ?</b></h6>
-            <div class="radio">
-              <label><input type="radio" name="online_payment_yes" id="online_payment_yes" value="online_payment_yes" checked>Oui</label>
-            </div>
-            <div class="radio">
-              <label><input type="radio" name="online_payment_no" id="online_payment_no" value="online_payment_no">Non</label>
-            </div>
-          </div>
-          <div class="col-lg-12" style="text-align: center;">
-            <button id="button_resa" style="margin-top: 3%;" type="submit" class="btn btn-primary mx-auto">Réserver</button>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div id="modal_resa" class="modal fade">
-      <div class="modal-dialog modal-confirm">
-        <div class="modal-content">
-          <div class="modal-header" style="text-align: center;">      
-            <h4 class="modal-title" style="margin: 0 auto;">Réservation en attente <i class="far fa-smile-beam"></i></h4>  
-          </div>
-          <div class="modal-body">
-            <p class="text-center">Votre réservation est bien prise en compte mais est pour l'instant en attente. Nous venons de vous envoyer un e-mail vous expliquant les modalités.</p>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="modal_payment_success" class="modal fade">
-      <div class="modal-dialog modal-confirm">
-        <div class="modal-content">
-          <div class="modal-header" style="text-align: center;">      
-            <h4 class="modal-title" style="margin: 0 auto;">Réservation acceptée <i class="far fa-smile-beam"></i></h4>  
-          </div>
-          <div class="modal-body">
-            <p class="text-center">Votre réservation est bien prise en compte. Nous venons de vous envoyer un mail de confirmation. Veuillez </p>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
-          </div>
-        </div>
+    <div align="center">
+      <div id="my-calendar">
       </div>
     </div>
   </section>
@@ -355,7 +245,7 @@ Un coin cuisine avec 2 fours, lave vaisselle, réfrigérateurs, congélateurs, c
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
           <i class="far fa-paper-plane fa-2x mb-2" style="color: #2B2E2B;"></i>
-          <h2 class="mb-5" style="font-size: 250%; color: #2B2E2B;">Pour toutes demandes d'informations, contactez nous !</h2>
+          <h2 class="mb-5" style="font-size: 250%; color: #2B2E2B;">Pour toutes demandes de réservation ou d'informations, contactez nous !</h2>
         </div>
       </div>
     </div>
@@ -453,7 +343,7 @@ Un coin cuisine avec 2 fours, lave vaisselle, réfrigérateurs, congélateurs, c
               <h4 class="text-uppercase m-0 primary-text-color">Email</h4>
               <hr class="my-4">
               <div class="small primary-text-color">
-                <a href="mailto:sallesaintvincent@gmail.com">sallechezdudu@free.fr</a>
+                <a href="mailto:sallesaintvincent@gmail.com">sallechezdudu@gmail.com</a>
               </div>
             </div>
           </div>
@@ -465,7 +355,7 @@ Un coin cuisine avec 2 fours, lave vaisselle, réfrigérateurs, congélateurs, c
               <i class="fas fa-mobile-alt accent-color mb-2"></i>
               <h4 class="text-uppercase m-0 primary-text-color">Téléphone</h4>
               <hr class="my-4 accent-color accent-color-background">
-              <div class="small primary-text-color">06.81.72.37.31</div>
+              <div class="small primary-text-color">06.81.72.37.31 <b>OU</b> 06.79.57.75.72</div>
             </div>
           </div>
         </div>
@@ -513,13 +403,6 @@ Un coin cuisine avec 2 fours, lave vaisselle, réfrigérateurs, congélateurs, c
           $(document).ready(function(){
               if ("{{ message }}" === "successful_contact") {
                 $('#modal_contact').modal('show');
-              }
-              if ("{{ message }}" === "successful_booking") {
-                $('#modal_resa').modal('show');
-              }
-              if ("{{ message }}" === "successful_payment") {
-                console.log("COUCOU PAIMENT OK")
-                $('#modal_payment_success').modal('show');
               }
           });
         {% endfor %}
