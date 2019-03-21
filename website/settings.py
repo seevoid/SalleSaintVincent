@@ -95,12 +95,12 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -181,20 +181,13 @@ DEBUG = False
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 CORS_REPLACE_HTTPS_REFERER      = True
-HOST_SCHEME                     = "http://"
+HOST_SCHEME                     = "https://"
 SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
 SECURE_FRAME_DENY               = True
-
-
-
-import dj_database_url
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)

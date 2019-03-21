@@ -70,52 +70,7 @@ def home(request):
 	if request.method == 'POST':
 		resaForm_ = resaForm(request.POST)
 		contactForm_ = contactForm(request.POST)
-		if resaForm_.is_valid():
-			dico_resa['name'] = name = resaForm_.cleaned_data['name_resa']
-			dico_resa['email'] = email = resaForm_.cleaned_data['email_resa']
-			dates_resa = resaForm_.cleaned_data['dates_resa']
-			dico_resa['phone'] = phone = resaForm_.cleaned_data['phone_number_resa']
-			dico_resa['description'] = description = resaForm_.cleaned_data['message_resa']
-			needs = []
-
-			post_dict = request.POST.dict()
-			for key in post_dict:
-				if key == 'optradio1':
-					presta = "fete"
-				if key == 'optradio2':
-					presta = "pro"
-				if key == 'chkbox_video':
-					needs.append("Video-Projecteur")
-				if key == 'chkbox_sono':
-					needs.append("Sono et Micro")
-				if key == 'chkbox_dj':
-					needs.append("DJ")
-				if key == 'chkbox_dj':
-					needs.append("DJ")
-				if key == 'online_payment_yes':
-					online_payment = True
-				if key == 'online_payment_no':
-					online_payment = False
-
-			dates_resa_list = dates_resa.split(",")
-			good_date_resa = []
-			for date in dates_resa_list:
-				good_date_resa.append(convert_js_to_google(date))
-
-			dico_resa['good_date_resa'] = good_date_resa
-			dico_resa['presta'] = presta
-			dico_resa['needs'] = needs
-
-			if online_payment:
-				price = PRICE_TO_PAY
-				return render(request, 'payment.html', locals()) 
-			else:
-				create_event(name, email, phone, good_date_resa, presta, needs, description)
-				send_confirmation_mail(name, email, good_date_resa, False)
-				successful_booking = True
-				messages.add_message(request, messages.SUCCESS, "successful_booking")
-				return HttpResponseRedirect("/")
-
+		
 		if contactForm_.is_valid():
 			name = contactForm_.cleaned_data['name_contact']
 			email = contactForm_.cleaned_data['email_contact']
@@ -135,35 +90,6 @@ def home(request):
 
 	return render(request, 'index.html', locals())
 
-
-@csrf_exempt
-def paypal_success(request):
-	global FROM_PAYAL 
-	global dico_resa
-
-	if request.method == 'POST':
-		FROM_PAYAL = True
-		return render(request, 'index.html', locals())
-
-	if FROM_PAYAL:
-		create_event(dico_resa['name'], dico_resa['email'], dico_resa['phone'], dico_resa['good_date_resa'], dico_resa['presta'], dico_resa['needs'], dico_resa['description'])
-		send_confirmation_mail(dico_resa['name'], dico_resa['email'], dico_resa['good_date_resa'], True)
-		successful_booking = True
-		messages.add_message(request, messages.SUCCESS, "successful_payment")
-		return render(request, 'paypal_success.html', locals())
-	else:
-		return HttpResponseRedirect("/")
-	
-
-@csrf_exempt
-def set_price(request):
-	global PRICE_TO_PAY
-	if request.method == 'POST':
-		post_dict = request.POST.dict()
-
-		PRICE_TO_PAY = post_dict['price']
-
-		return HttpResponse(content_type="text/plain", status=200)
 
 
 def send_confirmation_mail(name, from_email, good_date_resa, paypal):
@@ -214,36 +140,6 @@ def send_confirmation_mail(name, from_email, good_date_resa, paypal):
 	except BadHeaderError:
 		print("JE PASSE DANS LERREUR MAIL RESA")
 
-def check_dates_before_creation(events_dates, good_date_resa):
-	events_dates_2 = []
-	is_possible = True
-	for d in good_date_resa:
-		date = d[8:10] + '/' + d[5:7] + '/' + d[:4]
-		events_dates_2.append(date)
-
-	for d1 in events_dates:
-		for d2 in events_dates_2:
-			if d2 == d1:
-				is_possible = False
-
-	return is_possible
-
-def create_event(name, email, phone, good_date_resa, presta, needs, description):
-	global event
-	global service
-	needs_str = "Besoins : ["
-	for i in range(len(needs)):
-		if i < (len(needs)-1):
-			needs_str += needs[i] + ", " 
-		else:
-			needs_str += needs[i]
-	needs_str += "]"
-	local_event = dict(event)
-	local_event['summary'] = name + ' | ' + email + ' | ' + phone + ' | Réservation pour pesta : ' + presta  
-	local_event['description'] = description + " || " + needs_str
-	local_event['start']['dateTime'] = good_date_resa[0] + BETWEEN_DATE_AND_TIME + '17:00' + UTC_France
-	local_event['end']['dateTime'] = good_date_resa[-1] + BETWEEN_DATE_AND_TIME + '17:00' + UTC_France
-	service.events().insert(calendarId='primary', body=local_event).execute()
 
 
 def construct_list_of_dates(events_dates_tuples):
