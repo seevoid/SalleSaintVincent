@@ -499,3 +499,10 @@ footer {
             transform:skew(8deg) rotate(3deg);
 }
 
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
