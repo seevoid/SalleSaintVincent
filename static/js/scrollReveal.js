@@ -13,6 +13,8 @@ ScrollReveal().reveal('#image_10', { delay: 1150 });
 
 ScrollReveal().reveal('.container-fluid', { delay: 250 });
 ScrollReveal().reveal('.project-section', { delay: 250 });
+ScrollReveal().reveal('#about', { delay: 850 });
+ScrollReveal().reveal('#about2', { delay: 950 });
 ScrollReveal().reveal('#title1', { delay: 500 });
 ScrollReveal().reveal('#title2', { delay: 500 });
 ScrollReveal().reveal('#text-about1', { delay: 750 });
