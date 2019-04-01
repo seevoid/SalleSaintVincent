@@ -506,3 +506,10 @@ footer {
   margin-right: auto;
   width: 50%;
 }
+
+.hidden-text {
+  display:none;
+  visibility:hidden;
+  height:0;
+  width:0;
+}
